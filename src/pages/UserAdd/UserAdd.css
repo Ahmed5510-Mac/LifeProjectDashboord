@@ -1,0 +1,27 @@
+.sign-Up
+{
+    height: auto !important;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 30px 30px 10px 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
+}
+
+.sign-Up input
+{
+    margin-bottom: 10px;
+}
+
+.btnSubmit:hover
+{
+    background-color: transparent !important;;
+     color:#19283f !important;
+     border:1px solid #19283f;
+}
+.btnSubmit
+{
+    border-radius: 10px !important;
+    background-color: #19283f !important;
+    color: #fff !important;
+    text-align: center !important;
+    width:30vw;
+}
