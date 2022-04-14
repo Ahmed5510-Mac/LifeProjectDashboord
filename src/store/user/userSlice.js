@@ -19,23 +19,11 @@ export const insertCustomer = createAsyncThunk(
   'customers/insertCustomers',
   async (customertData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
-    // let formData = new FormData()
-    // formData.append('customertData._id',customertData._id)
-    // formData.append('customertData.fullName',customertData.fullName)
-    // formData.append('customertData.customerPhone',customertData.customerPhone)
-    // formData.append('customertData.customerEmail',customertData.customerEmail)
-    // formData.append('customertData.image',file)
+    const config = {headers: { 'content-type': 'multipart/form-data' }}
      try {
-      const res = await fetch('http://localhost:8080/customer', {
-        method: 'POST',
-        body: JSON.stringify(customertData),
-        headers: {
-          'Content-type': 'application/json;charset=UTF-8',
-        },
-      });
-      const data = await res.json();
-      console.log(data)
-      return data;
+      const res = await axios.post('http://localhost:8080/customer',customertData,config);
+      console.log(res)
+      return res;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -47,12 +35,7 @@ export const deleteCustomer = createAsyncThunk(
   async (_id, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-         await fetch(`http://localhost:8080/customer/${_id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-type': 'application/json;charset=UTF-8',
-        },
-      });
+      const res = await axios.delete(`http://localhost:8080/customer/${_id}`);
       return _id;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -60,42 +43,19 @@ export const deleteCustomer = createAsyncThunk(
   }
 );
 
-export const selectCustomer = createAsyncThunk(
-  'customer/selectCustomer',
-  async (_, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      const res = await axios.get('http://localhost:8080/customer', {
-        headers: {
-          'Content-type': 'application/json;charset=UTF-8',
-        },
-      });
-      return res.data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
 
 const initialState = {
   customers: null,
   isLoading: false,
   error: null,
-  customerInfo: null,
-  file:null
 };
 
 export const userSlice = createSlice({
   name: 'customer',
   initialState,
-  reducers:{
-    upadateFile:function(state,action)
-          {
-            console.log(action.payload)
-          }
-          },
-  extraReducers: {
-    //getCustomers
+  reducers:{},
+  extraReducers:{
+     //getCustomers
     [getCustomers.pending]: (state, action) => {
       console.log(action);
       state.isLoading = true;
@@ -143,22 +103,8 @@ export const userSlice = createSlice({
 
       state.isLoading = false;
       state.error = action.payload;
-    },
-    //select Customer
-    [selectCustomer.pending]: (state, action) => {
-      state.isLoading = true;
-      state.error = null;
-    },
-    [selectCustomer.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.customerInfo = action.payload;
-    },
-    [selectCustomer.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+    }
   },
 });
 
-export const {upadateFile} =  userSlice.actions;
 export default userSlice.reducer;

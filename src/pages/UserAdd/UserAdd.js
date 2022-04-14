@@ -1,7 +1,6 @@
-import {React,useRef} from 'react'
+import {React,useRef,useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { insertCustomer } from '../../store/user/userSlice';
-import updateFile  from "../../store/user/userSlice";
 import"./UserAdd.css"
 
 const  UserAdd = () => {
@@ -12,51 +11,56 @@ const  UserAdd = () => {
     const customerPassword = useRef(null)
     const confirmPassword = useRef(null)
     const role = useRef(null)
-    const customerAddresses = useRef(null)
+    const customerCountry = useRef(null)
+    const customerCity = useRef(null)
+    const customerStreet= useRef(null)
+    const customerBuilding = useRef(null)
+    const customerFloor = useRef(null)
 
     const dispatch = useDispatch()
-    
+    const [file,setFile] = useState(null)
+
     const handleSubmit =(e)=>{
         e.preventDefault()
-        const data = {
-            fullName: customerName.current.value,
-            customerPhone: customerPhone.current.value,
-            customerEmail: customerEmail.current.value,
-            // image: e.target.files[0],
-            customerPassword: customerPassword.current.value,
-            confirmPassword: confirmPassword.current.value,
-            role: role.current.value,
-            customerAddresses: customerAddresses.current.value,
-        }
-        dispatch(insertCustomer(data))
+        let formData = new FormData();
+        formData.append('fullName',customerName.current.value)
+        formData.append('customerPhone',customerPhone.current.value)
+        formData.append('customerEmail',customerEmail.current.value)
+        formData.append('image',file)
+        formData.append('customerPassword',customerPassword.current.value)
+        formData.append('confirmPassword',confirmPassword.current.value)
+        formData.append('role',role.current.value)
+
+        dispatch(insertCustomer(formData))
         customerName.current.value = null
         customerPhone.current.value = null
         customerEmail.current.value = null
-        image.current.value = null
         customerPassword.current.value = null
         confirmPassword.current.value = null
         role.current.value = null
-        customerAddresses.current.value = null
     }
+ 
+
+   
 
   return (
 <div className="row justify-content-center  align-items-center mx-auto">
-<form  className='continer px-5 py-5 text-center  mx-auto sign-Up' onSubmit={handleSubmit}>
+<form  className='continer px-5 py-5 text-center  mx-auto sign-Up' onSubmit={handleSubmit} encType='multipart/form-data'>
             <div className='d-flex align-items-center justify-content-evenly w-100'>
             <label htmlFor="userName"><i className="fa-solid border p-2 rounded-circle fa-user" role="button"></i></label>
                 <input className='form-control w-75 ' placeholder='Enter Your fullname' type="text" name='fullName' ref={customerName}  />
             </div>
             <div className='d-flex align-items-center justify-content-evenly w-100'>
-            <label htmlFor="userName"><i class="fa-solid fa-phone border p-2 rounded-circle " role="button"></i></label>
+            <label htmlFor="userName"><i className="fa-solid fa-phone border p-2 rounded-circle " role="button"></i></label>
                 <input className='form-control w-75 'type="number" placeholder='Enter Your Phonenumber'  name='customerPhone'ref={customerPhone} />
             </div>
             <div className='d-flex align-items-center justify-content-evenly w-100'>
-            <label htmlFor="userName"><i class="fa-solid fa-at border p-2 rounded-circle  " role="button"></i></label>
+            <label htmlFor="userName"><i className="fa-solid fa-at border p-2 rounded-circle  " role="button"></i></label>
                 <input className='form-control w-75 'type="email" placeholder='Enter Your Email' name='customerEmail' ref={customerEmail}  />
             </div>
             <div className='d-flex align-items-center justify-content-evenly w-100'>
-            <label htmlFor="userImage"><i class="fa-solid fa-at border p-2 rounded-circle  " role="button"></i></label>
-                <input className='form-control w-75 'type="file" placeholder='Enter Your Email' name='image' ref={image} />
+            <label htmlFor="userImage"><i className="fa-solid fa-at border p-2 rounded-circle  " role="button"></i></label>
+                <input className='form-control w-75' type="file"  accept=".png,.jpeg,.jpg" name='image' ref={image} onChange={(e)=>setFile(e.target.files[0])}/>
             </div>
             <div className='d-flex align-items-center justify-content-evenly w-100'>
             <label htmlFor="Passoword"><i className="fa-solid fa-unlock-keyhole border p-2 rounded-circle " role="button"></i></label>
@@ -72,9 +76,25 @@ const  UserAdd = () => {
             </div>
             <div className='d-flex align-items-center justify-content-evenly w-100'>
             <label htmlFor="userName"><i className="fa-solid fa-location-dot border rounded-circle p-2  " role="button"></i></label>
-                <input className='form-control w-75'type="text" placeholder='Enter Your Address' name='customerAddresses'ref={customerAddresses} />
+                <input className='form-control w-75'type="text" placeholder='Enter Your country' name='customer.country'ref={customerCountry} />
             </div>
-            <button className='btnSubmit btn mt-3' type="submit">Add<i class="fa-solid fa-clipboard-list mx-1"></i></button>
+            <div className='d-flex align-items-center justify-content-evenly w-100'>
+            <label htmlFor="userName"><i className="fa-solid fa-location-dot border rounded-circle p-2  " role="button"></i></label>
+                <input className='form-control w-75'type="text" placeholder='Enter Your city' name='customer.city'ref={customerCity} />
+            </div>
+            <div className='d-flex align-items-center justify-content-evenly w-100'>
+            <label htmlFor="userName"><i className="fa-solid fa-location-dot border rounded-circle p-2  " role="button"></i></label>
+                <input className='form-control w-75'type="text" placeholder='Enter Your street name' name='customer.streetName'ref={customerStreet} />
+            </div>
+            <div className='d-flex align-items-center justify-content-evenly w-100'>
+            <label htmlFor="userName"><i className="fa-solid fa-location-dot border rounded-circle p-2  " role="button"></i></label>
+                <input className='form-control w-75'type="number" placeholder='Enter Your building number' name='customer.buildingNumber'ref={customerBuilding} />
+            </div>
+            <div className='d-flex align-items-center justify-content-evenly w-100'>
+            <label htmlFor="userName"><i className="fa-solid fa-location-dot border rounded-circle p-2  " role="button"></i></label>
+                <input className='form-control w-75'type="number" placeholder='Enter Your floor number' name='customer.floorNumber'ref={customerFloor} />
+            </div>
+            <button className='btnSubmit btn mt-3' type="submit">Add<i className="fa-solid fa-clipboard-list mx-1"></i></button>
         </form>
         </div>
   )

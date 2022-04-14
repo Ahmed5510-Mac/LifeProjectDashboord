@@ -1,4 +1,3 @@
-import { DataGrid } from '@material-ui/data-grid';
 import { useSelector,useDispatch } from "react-redux";
 import {useEffect} from 'react'
 import { getCustomers,deleteCustomer} from './../../store/user/userSlice';
@@ -21,10 +20,15 @@ const UserList = () => {
             <td>{customer.customerEmail}</td>
             <td>{customer.customerPhone}</td>
             <td>{customer.role}</td>
-            {/* <td>{customer.addresses.map((address)=>{
-              {address}
-            })}</td> */}
-            <td><span className='fa-solid fa-trash' onClick={handleDelete}></span></td>
+            <td><img src={customer.image} alt="image" style={{width:"50px",height:"50px"}}/></td>
+            <td><ul>{customer.customerAddresses.map((address,i)=>(<li key={i}><ul className='list-unstyled'>
+              <li>Country : {address.country}</li>
+              <li>City : {address.city}</li>
+              <li>Street name : {address.streetName}</li>
+              <li> Building Number{address.buildingNumber}</li>
+              <li> Floor Number{address.floorNumber}</li>
+              </ul></li>))}</ul></td>
+            <td><span className='fa-solid fa-trash' onClick={()=>handleDelete(customer._id)}></span></td>
             <td><span className='fa-solid fa-pen-to-square'></span></td>
 </tr>))
   return (<>
@@ -35,6 +39,8 @@ const UserList = () => {
             <th>Customer Email</th>
             <th>Customer Phone</th>
             <th>Customer Role</th>
+            <th>Customer iamge</th>
+            <th>Customer Addresses</th>
           </tr>
         </thead>
         <tbody>{customersList}</tbody>
