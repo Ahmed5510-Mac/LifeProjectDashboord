@@ -7,7 +7,6 @@ const  UserAdd = () => {
     const customerName = useRef(null)
     const customerPhone = useRef(null)
     const customerEmail = useRef(null)
-    const image = useRef(null)
     const customerPassword = useRef(null)
     const confirmPassword = useRef(null)
     const role = useRef(null)
@@ -29,7 +28,7 @@ const  UserAdd = () => {
         formData.append('image',file)
         formData.append('customerPassword',customerPassword.current.value)
         formData.append('confirmPassword',confirmPassword.current.value)
-        formData.append('role',role.current.value)
+        formData.append('role',role.current.value)  
 
         dispatch(insertCustomer(formData))
         customerName.current.value = null
@@ -60,7 +59,7 @@ const  UserAdd = () => {
             </div>
             <div className='d-flex align-items-center justify-content-evenly w-100'>
             <label htmlFor="userImage"><i className="fa-solid fa-at border p-2 rounded-circle  " role="button"></i></label>
-                <input className='form-control w-75' type="file"  accept=".png,.jpeg,.jpg" name='image' ref={image} onChange={(e)=>setFile(e.target.files[0])}/>
+                <input className='form-control w-75' type="file"  accept=".png,.jpeg,.jpg" name='image'  onChange={(e)=>setFile(e.target.files[0])}/>
             </div>
             <div className='d-flex align-items-center justify-content-evenly w-100'>
             <label htmlFor="Passoword"><i className="fa-solid fa-unlock-keyhole border p-2 rounded-circle " role="button"></i></label>
