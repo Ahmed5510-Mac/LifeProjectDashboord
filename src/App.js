@@ -4,9 +4,9 @@ import style from './App.module.css';
 import Home from './pages/Home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import UserList from './pages/UserList/UserList';
-import ProductList from './pages/ProductList/ProductList';
-import Product from './pages/Product/Product';
 import UserAdd from './pages/UserAdd/UserAdd';
+import ProductList from './pages/ProductList/ProductList';
+import ProductAdd from './pages/ProductAdd/ProductAdd';
 
 const App = () => {
   return (
@@ -19,8 +19,8 @@ const App = () => {
             <Route path='/' element={<Home />} />
             <Route path='/users' element={<UserList />} />
             <Route path='/products' element={<ProductList />} />
-            <Route path='/users/add' element={<UserAdd/>} />
-            <Route path='/products/:productId' element={<Product />} />
+            <Route path='/products/add' element={<ProductAdd />} />
+            <Route path='/users/add' element={<UserAdd />} />
             <Route path='*' />
           </Routes>
         </div>

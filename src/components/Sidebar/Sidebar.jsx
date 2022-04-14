@@ -3,11 +3,10 @@ import style from './Sidebar.module.css'
 import LineStyleIcon from '@material-ui/icons/LineStyle';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import { useNavigate , NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 const Sidebar = () => {
-    const navigate = useNavigate()
     return (<>
         <div className={style.sidebar}>
             <div className={style.sidebarWrapper}>
@@ -16,9 +15,9 @@ const Sidebar = () => {
                         Dashboard
                     </h3>
                     <ul className={style.sidebarList}>
-                        <li className={style.sidebarListItem}>
+                        <NavLink to ="/" className={style.sidebarListItem}>
                             <LineStyleIcon className={style.sidebarIcon} />Home
-                        </li>
+                        </NavLink>
                         <li className={style.sidebarListItem}>
                             <TimelineIcon className={style.sidebarIcon} />Analytics
                         </li>
@@ -35,9 +34,9 @@ const Sidebar = () => {
                         <NavLink to ="/users" className={style.sidebarListItem}>
                             <LineStyleIcon className={style.sidebarIcon} />Users
                         </NavLink>
-                        <li className={style.sidebarListItem}>
+                        <NavLink to ="/products" className={style.sidebarListItem}>
                             <TimelineIcon className={style.sidebarIcon} />Products
-                        </li>
+                        </NavLink>
                         <li className={style.sidebarListItem}>
                             <TrendingUpIcon className={style.sidebarIcon} />Categories
                         </li>
