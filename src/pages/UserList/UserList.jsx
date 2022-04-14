@@ -16,11 +16,11 @@ const UserList = () => {
     dispatch(deleteCustomer(_id))
   }
   const customersList = customers && customers.map((customer) => (<tr key={customer._id}>
-            <td scope="row">{customer.fullName}</td>
-            <td>{customer.customerEmail}</td>
-            <td>{customer.customerPhone}</td>
-            <td>{customer.role}</td>
-            <td><img src={customer.image} alt="image" style={{width:"50px",height:"50px"}}/></td>
+            <td scope="row" className="text-center">{customer.fullName}</td>
+            <td className="text-center">{customer.customerEmail}</td>
+            <td className="text-center">{customer.customerPhone}</td>
+            <td className="text-center">{customer.role}</td>
+            <td className="text-center"><img src={customer.image} alt="image" style={{width:"50px",height:"50px",borderRadius:"50%"}}/></td>
             <td><ul>{customer.customerAddresses.map((address,i)=>(<li key={i}><ul className='list-unstyled'>
               <li>Country : {address.country}</li>
               <li>City : {address.city}</li>
@@ -28,8 +28,8 @@ const UserList = () => {
               <li> Building Number{address.buildingNumber}</li>
               <li> Floor Number{address.floorNumber}</li>
               </ul></li>))}</ul></td>
-            <td><span className='fa-solid fa-trash' onClick={()=>handleDelete(customer._id)}></span></td>
-            <td><span className='fa-solid fa-pen-to-square'></span></td>
+            <td><span className='fa-solid fa-trash' role="button" onClick={()=>handleDelete(customer._id)}></span></td>
+            <td><span className='fa-solid fa-pen-to-square' role="button" ></span></td>
 </tr>))
   return (<>
          {isLoading ? 'loading...' : <div className='container'><NavLink to="/users/add" className="btn btn-primary my-2">Add user</NavLink><table className="table table-hover table-bordered table-striped">
@@ -39,7 +39,7 @@ const UserList = () => {
             <th>Customer Email</th>
             <th>Customer Phone</th>
             <th>Customer Role</th>
-            <th>Customer iamge</th>
+            <th>Customer image</th>
             <th>Customer Addresses</th>
           </tr>
         </thead>

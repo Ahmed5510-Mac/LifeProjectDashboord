@@ -14,24 +14,25 @@ export const getProducts = createAsyncThunk(
   }
 );
 
-
-
-
 export const insertProduct = createAsyncThunk(
   'product/insertProduct',
   async (productData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
-    const config = {headers: { 'content-type': 'multipart/form-data' }}
-     try {
-      const res = await axios.post('http://localhost:8080/products',productData,config);
-      console.log(res)
-      return res;
+    try {
+      const res = await fetch('http://localhost:8080/products', {
+        method: 'POST',
+        body: JSON.stringify(productData),
+        headers: {
+          'Content-type': 'application/json;charset=UTF-8',
+        },
+      });
+      const data = await res.json();
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
-
 
 export const deleteProduct = createAsyncThunk(
   'product/deleteProduct',
@@ -104,7 +105,6 @@ export const productSlice = createSlice({
     },
     [insertProduct.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.error = null;
       state.products.push(action.payload);
     },
     [insertProduct.rejected]: (state, action) => {
