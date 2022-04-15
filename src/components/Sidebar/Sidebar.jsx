@@ -41,9 +41,9 @@ const Sidebar = () => {
                         <li className={style.sidebarListItem}>
                             <TrendingUpIcon className={style.sidebarIcon} />Categories
                         </li>
-                        <li className={style.sidebarListItem}>
-                            <TrendingUpIcon className={style.sidebarIcon} />Reports
-                        </li>
+                        <NavLink to ="/reports" className={style.sidebarListItem}>
+                           <TrendingUpIcon className={style.sidebarIcon} />Reports 
+                        </NavLink>
                     </ul>
                 </div>
                 <div className={style.sidebarMenu}>

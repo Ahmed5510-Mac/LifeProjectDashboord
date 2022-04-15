@@ -7,6 +7,7 @@ import UserList from './pages/UserList/UserList';
 import ProductList from './pages/ProductList/ProductList';
 import Product from './pages/Product/Product';
 import UserAdd from './pages/UserAdd/UserAdd';
+import Reports from './pages/Reports/Reports';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path='/products' element={<ProductList />} />
             <Route path='/users/add' element={<UserAdd/>} />
             <Route path='/products/:productId' element={<Product />} />
+            <Route path='/reports' element={<Reports />} />
             <Route path='*' />
           </Routes>
         </div>
