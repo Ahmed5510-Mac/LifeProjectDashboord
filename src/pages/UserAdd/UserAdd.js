@@ -1,6 +1,7 @@
 import { React, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { insertCustomer } from '../../store/user/userSlice';
+import { insertCustomer,getCustomers } from '../../store/user/userSlice';
+import { useNavigate } from "react-router-dom";
 import "./UserAdd.css"
 
 const UserAdd = () => {
@@ -9,7 +10,7 @@ const UserAdd = () => {
     const [customerEmail, setEmail] = useState(null)
     const [customerPassword, setPassword] = useState(null)
     const [confirmPassword, setConfirmPassword] = useState(null)
-    const [role, setRole] = useState(null)
+    const role= useRef('')
     const [customerCountry, setCountry] = useState(null)
     const [customerCity, setCity] = useState(null)
     const [customerStreet, setStreet] = useState(null)
@@ -17,9 +18,10 @@ const UserAdd = () => {
     const [customerFloor, setFloor] = useState(null)
 
     const dispatch = useDispatch()
+    let navigate = useNavigate();
     const [file, setFile] = useState(null)
 
-    const handleSubmit = (e) => {
+     const  handleSubmit = async  (e) => {
         e.preventDefault()
         let formData = new FormData();
         formData.append('fullName', customerName)
@@ -28,7 +30,7 @@ const UserAdd = () => {
         formData.append('image', file)
         formData.append('customerPassword', customerPassword)
         formData.append('confirmPassword', confirmPassword)
-        formData.append('role', role)
+        formData.append('role', role.current.value)
         formData.append('customerAddresses',
             JSON.stringify([
                 {
@@ -39,17 +41,13 @@ const UserAdd = () => {
                     floorNumber: customerFloor,
                 }
             ]))
-                // console.log(formData)
         dispatch(insertCustomer(formData))
-
+        navigate("/users", { replace: true })
     }
-
-
-
 
     return (
         <div className="row justify-content-center  align-items-center mx-auto mb-3">
-            <form className='continer px-5 py-5 text-center  mx-auto sign-Up' onSubmit={(e)=>handleSubmit(e)} encType='multipart/form-data'>
+            <form className='continer px-5 py-5 text-center  mx-auto sign-Up' onSubmit={(e)=>handleSubmit(e)} encType='multipart/formData'>
                 <div className='d-flex align-items-center justify-content-evenly w-100'>
                     <label htmlFor="userName"><i className="fa-solid border p-2 rounded-circle fa-user" role="button"></i></label>
                     <input className='form-control w-75 ' placeholder='Enter Your fullname' type="text" name='fullName' onChange={(e) => setName(e.target.value)} />
@@ -76,7 +74,7 @@ const UserAdd = () => {
                 </div>
                 <div className='d-flex align-items-center justify-content-evenly w-100'>
                     <label htmlFor="userName"><i className="fa-solid border p-2 rounded-circle fa-user  " role="button"></i></label>
-                    <select className='form-select w-75 mb-1' onChange={(e) => setRole(e.target.value)}>
+                    <select className='form-select w-75 mb-1' ref={role}>
                     <option value="Doctor">Doctor</option>
                     <option value="Merchant">Merchant</option>
                     </select>

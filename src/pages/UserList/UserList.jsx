@@ -1,20 +1,23 @@
 import { useSelector,useDispatch } from "react-redux";
-import {useEffect} from 'react'
-import { getCustomers,deleteCustomer} from './../../store/user/userSlice';
-import{NavLink} from "react-router-dom"
+import {useEffect,useHistory} from 'react'
+import { getCustomers,deleteCustomer,selectCustomer} from './../../store/user/userSlice';
+import{useNavigate, NavLink} from "react-router-dom"
 
 
 const UserList = () => {
+  const navigate = useNavigate()
   const {customers,isLoading} = useSelector(state =>state.users)
+
   const dispatch = useDispatch()
 
-  useEffect(() => {
+   useEffect(() => {
     dispatch(getCustomers())
   }, [dispatch])
 
   const handleDelete = (_id) => {
     dispatch(deleteCustomer(_id))
   }
+  
   const customersList = customers && customers.map((customer) => (<tr key={customer._id}>
             <td scope="row" className="text-center">{customer.fullName}</td>
             <td className="text-center">{customer.customerEmail}</td>
@@ -29,7 +32,7 @@ const UserList = () => {
               <li> Floor Number{address.floorNumber}</li>
               </ul></li>))}</ul></td>
             <td><span className='fa-solid fa-trash' role="button" onClick={()=>handleDelete(customer._id)}></span></td>
-            <td><span className='fa-solid fa-pen-to-square' role="button" ></span></td>
+            <td><span className='fa-solid fa-pen-to-square' role="button" onClick={()=>{navigate(`/users/${customer._id}`,{state:{customerData:customer}})}} ></span></td>
 </tr>))
   return (<>
          {isLoading ? 'loading...' : <div className='container'><NavLink to="/users/add" className="btn btn-primary my-2">Add user</NavLink><table className="table table-hover table-bordered table-striped">
