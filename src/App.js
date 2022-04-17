@@ -9,6 +9,9 @@ import ProductAdd from './pages/ProductAdd/ProductAdd';
 import UserAdd from './pages/UserAdd/UserAdd';
 import UserEdit from './pages/UserEdit/UserEdit';
 import ProductEdit from './pages/ProductEdit/ProductEdit';
+import CategoryAdd from './pages/CategoryAdd/CategoryAdd';
+import CategoryEdit from './pages/CategoryEdit/CategoryEdit';
+import CategoryList from './pages/CategoryList/CategoryList';
 
 const App = () => {
   return (
@@ -22,6 +25,9 @@ const App = () => {
             <Route path='/users' element={<UserList />} />
             <Route path='/users/add' element={<UserAdd/>} />
             <Route path='/users/:id' element={<UserEdit />} />
+            <Route path='/category' element={<CategoryList />} />
+            <Route path='/category/add' element={<CategoryAdd />} />
+            <Route path='/category/:id/edit' element={<CategoryEdit />} />
             <Route path='/products' element={<ProductList />} />
             <Route path='/products/add' element={<ProductAdd />} />
             <Route path='/products/:id' element={<ProductEdit />} />

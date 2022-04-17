@@ -37,9 +37,9 @@ const Sidebar = () => {
                         <NavLink to ="/products" className={style.sidebarListItem}>
                             <TimelineIcon className={style.sidebarIcon} />Products
                         </NavLink>
-                        <li className={style.sidebarListItem}>
+                        <NavLink to ="/category" className={style.sidebarListItem}>
                             <TrendingUpIcon className={style.sidebarIcon} />Categories
-                        </li>
+                        </NavLink>
                         <li className={style.sidebarListItem}>
                             <TrendingUpIcon className={style.sidebarIcon} />Reports
                         </li>
