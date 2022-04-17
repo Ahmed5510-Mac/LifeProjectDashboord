@@ -16,6 +16,8 @@ function ProductEdit() {
   const [quantity, setQuantity] = useState(productInfo.quantity)
   const [countryOfManufacture, setCountryOfManufacture] = useState(productInfo.countryOfManufacture)
   const [description, setDescription] = useState(productInfo.description)
+  const [discount, setDiscount] = useState(productInfo.discount)
+  const [category, setCategory] = useState(productInfo.category)
   const [expirationDate, setExpirationDate] = useState(productInfo.expirationDate)
 
   const dispatch = useDispatch()
@@ -31,6 +33,8 @@ function ProductEdit() {
     formData.append('quantity', quantity)
     formData.append('countryOfManufacture', countryOfManufacture)
     formData.append('description', description)
+    formData.append('category',JSON.stringify(category))
+    formData.append('discount', JSON.stringify(discount))
     formData.append('expirationDate', expirationDate)
 
     dispatch(editProduct({ formData: formData, id: id }))
@@ -58,6 +62,12 @@ function ProductEdit() {
         </div>
         <div className='col-md-4 d-flex me-4 mb-1'>
           <span className='fa-solid border p-2 rounded-circle fa-user me-1'></span><input className='form-control col-md-6' value={description} onChange={(e) => setDescription(e.target.value)} />
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+          <span className='fa-solid border p-2 rounded-circle fa-user me-1'></span><input className='form-control col-md-6' value={discount} onChange={(e) => setDiscount(e.target.value)} />
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+          <span className='fa-solid border p-2 rounded-circle fa-user me-1'></span><input className='form-control col-md-6' value={category} onChange={(e) => setCategory(e.target.value)} />
         </div>
         <div className='col-md-4 d-flex me-4 mb-1'>
           <span className='fa-solid border p-2 rounded-circle fa-user me-1'></span><input className='form-control col-md-6' value={expirationDate} onChange={(e) => setExpirationDate(e.target.value)} />

@@ -15,11 +15,12 @@ const Sidebar = () => {
                         Dashboard
                     </h3>
                     <ul className={style.sidebarList}>
-                        <NavLink to ="/" className={style.sidebarListItem}>
+                        <NavLink to="/" className={style.sidebarListItem}>
                             <LineStyleIcon className={style.sidebarIcon} />Home
                         </NavLink>
                         <li className={style.sidebarListItem}>
-                            <TimelineIcon className={style.sidebarIcon} />Analytics
+                            <span className='fa-solid  p-1 fa-chart-simple me-1'></span>
+                            Analytics
                         </li>
                         <li className={style.sidebarListItem}>
                             <TrendingUpIcon className={style.sidebarIcon} />Sales
@@ -31,17 +32,20 @@ const Sidebar = () => {
                         Quick Menu
                     </h3>
                     <ul className={style.sidebarList}>
-                        <NavLink to ="/users" className={style.sidebarListItem}>
-                            <LineStyleIcon className={style.sidebarIcon} />Users
+                        <NavLink to="/users" className={style.sidebarListItem}>
+                            <span className='fa-solid  p-1 fa-user me-1'></span>
+                            Users
                         </NavLink>
-                        <NavLink to ="/products" className={style.sidebarListItem}>
-                            <TimelineIcon className={style.sidebarIcon} />Products
+                        <NavLink to="/products" className={style.sidebarListItem}>
+                            <span className='fa-brands  p-1 fa-product-hunt me-1'></span>
+                            Products
                         </NavLink>
-                        <NavLink to ="/category" className={style.sidebarListItem}>
-                            <TrendingUpIcon className={style.sidebarIcon} />Categories
+                        <NavLink to="/category" className={style.sidebarListItem}>
+                        <span className='fa-brands fa-deezer p-1  me-1'></span>
+                           Categories
                         </NavLink>
                         <li className={style.sidebarListItem}>
-                            <TrendingUpIcon className={style.sidebarIcon} />Reports
+                            <span className='fa-solid  p-1 fa-receipt me-1'></span>Reports
                         </li>
                     </ul>
                 </div>
@@ -51,13 +55,16 @@ const Sidebar = () => {
                     </h3>
                     <ul className={style.sidebarList}>
                         <li className={style.sidebarListItem}>
-                            <LineStyleIcon className={style.sidebarIcon} />Mail
+                            <span className='fa-solid  p-1 fa-inbox me-1'></span>
+                            Mail
                         </li>
                         <li className={style.sidebarListItem}>
-                            <TimelineIcon className={style.sidebarIcon} />Feedback
+                            <span className='fa-solid  p-1 fa-comments me-1'></span>
+                            Feedback
                         </li>
                         <li className={style.sidebarListItem}>
-                            <TrendingUpIcon className={style.sidebarIcon} />Messages
+                            <span className='fa-solid  p-1 fa-message me-1'></span>
+                            Messages
                         </li>
                     </ul>
                 </div>
@@ -70,10 +77,12 @@ const Sidebar = () => {
                             <LineStyleIcon className={style.sidebarIcon} />Manage
                         </li>
                         <li className={style.sidebarListItem}>
-                            <TimelineIcon className={style.sidebarIcon} />Analytics
+                            <span className='fa-solid  p-1 fa-chart-simple me-1'></span>
+                            Analytics
                         </li>
                         <li className={style.sidebarListItem}>
-                            <TrendingUpIcon className={style.sidebarIcon} />Reports
+                            <span className='fa-solid  p-1 fa-receipt me-1'></span>
+                            Reports
                         </li>
                     </ul>
                 </div>
