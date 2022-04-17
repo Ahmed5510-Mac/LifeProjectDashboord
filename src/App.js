@@ -5,9 +5,10 @@ import Home from './pages/Home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import UserList from './pages/UserList/UserList';
 import ProductList from './pages/ProductList/ProductList';
-import Product from './pages/Product/Product';
+import ProductAdd from './pages/ProductAdd/ProductAdd';
 import UserAdd from './pages/UserAdd/UserAdd';
 import UserEdit from './pages/UserEdit/UserEdit';
+import ProductEdit from './pages/ProductEdit/ProductEdit';
 
 const App = () => {
   return (
@@ -19,10 +20,11 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/users' element={<UserList />} />
-            <Route path='/products' element={<ProductList />} />
             <Route path='/users/add' element={<UserAdd/>} />
-            <Route path='/products/:productId' element={<Product />} />
             <Route path='/users/:id' element={<UserEdit />} />
+            <Route path='/products' element={<ProductList />} />
+            <Route path='/products/add' element={<ProductAdd />} />
+            <Route path='/products/:id' element={<ProductEdit />} />
             <Route path='*' />
           </Routes>
         </div>

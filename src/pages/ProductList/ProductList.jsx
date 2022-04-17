@@ -1,76 +1,53 @@
 import style from './ProductList.module.css';
-import { DataGrid } from '@material-ui/data-grid';
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-
-const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
-    {
-      field: 'products',
-      headerName: 'Products',
-      width: 150,
-      editable: true,
-    },
-    {
-      field: 'stock',
-      headerName: 'Stock',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 180,
-    },
-    {
-      field: 'status',
-      headerName: 'Status',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-    },
-    {
-      field: 'price',
-      headerName: 'Price',
-      sortable: true,
-      width: 180,
-    }, {
-      field: 'action',
-      headerName: 'Action',
-      width: 180,
-      renderCell:(params)=>{
-        return(
-          <>
-       
-          <button className={style.userListEdit}>Edit</button>
-         
-          <DeleteOutlineIcon className={style.userListDelete}/>
-          </>
-        )
-      }
-    },
-  ];
-  
-  const rows = [
-    { id: 1, products: 'Panadol', avatar: '', stock: 'Cairo', status: 'active', price: "12.00$" },
-    { id: 2, products: 'Comtrex', avatar: '', stock: 'Alex', status: 'active', price: "22.00$" },
-    { id: 3, products: 'Congestal', avatar: '', stock: 'Mansoura', status: 'active', price: "21.00$" },
-    { id: 5, products: 'Cataflam', avatar: '', stock: 'Giza', status: 'active', price: "42.00$" },
-    { id: 6, products: 'Novadol', avatar: '', stock: 'Ismailia', status: 'active', price: "62.00$" },
-    { id: 7, products: 'Profin', avatar: '', stock: 'Matroh', status: 'active', price: "88.00$" },
-    { id: 8, products: 'Catafast', avatar: '', stock: 'Luxor', status: 'active', price: "42.00$" },
-    { id: 9, products: 'Telfast', avatar: '', stock: 'Aswan', status: 'active', price: "44.00$" },
-  ];
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from 'react'
+import { NavLink, useNavigate } from "react-router-dom"
+import { getProducts, deleteProduct } from '../../store/product/productSlice';
 
 const ProductList = () => {
-    return ( <>
-    <div className={style.productList}>
-    <div style={{ height: 550, width: '100%' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={8}
-          checkboxSelection
-          disableSelectionOnClick
-        />
-      </div>
+  const navigate = useNavigate()
+  const { products, isLoading } = useSelector(state => state.products)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [dispatch])
+
+  const handleDelete = (_id) => {
+    dispatch(deleteProduct(_id))
+  }
+  const productsList = products && products.map((product) => (<tr key={product._id}>
+    <td scope="row">{product.productName}</td>
+    <td>{product.company}</td>
+    <td>{product.price}</td>
+    <td>{product.quantity}</td>
+    <td>{product.countryOfManufacture}</td>
+    <td>{product.description}</td>
+    <td>{product.expirationDate}</td>
+    <td className={style.productListDelete}><span className='fa-solid fa-trash' onClick={() => handleDelete(product._id)}></span></td>
+    <td><span className='fa-solid fa-pen-to-square' role="button"  onClick={() => { navigate(`/products/${product._id}`, { state: { productData: product } }) }} ></span></td>
+  </tr>))
+
+  return (<>
+  <div className={style.productList}>
+    {isLoading ? 'loading...' : <div className='container'><NavLink to="/products/add" className="btn btn-primary my-2">Add product</NavLink><table className="table table-hover table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Company</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>CountryOfManufacture</th>
+          <th>Description</th>
+          <th>ExpirationDate</th>
+        </tr>
+      </thead>
+      <tbody>{productsList}</tbody>
+    </table>
     </div>
-    </> );
+    }
+    </div>
+  </>);
 }
- 
+
 export default ProductList;

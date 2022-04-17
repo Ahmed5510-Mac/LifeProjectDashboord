@@ -18,16 +18,15 @@ export const insertProduct = createAsyncThunk(
   'product/insertProduct',
   async (productData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
+    const config = { headers: { 'content-type': 'multipart/form-data' } };
     try {
-      const res = await fetch('http://localhost:8080/products', {
-        method: 'POST',
-        body: JSON.stringify(productData),
-        headers: {
-          'Content-type': 'application/json;charset=UTF-8',
-        },
-      });
-      const data = await res.json();
-      return data;
+      const res = await axios.post(
+        'http://localhost:8080/products',
+        productData,
+        config
+      );
+      console.log(res);
+      return res;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -39,14 +38,7 @@ export const deleteProduct = createAsyncThunk(
   async (_id, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      await fetch(`http://localhost:8080/products/${_id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-type': 'application/json;charset=UTF-8',
-        },
-      });
-      // const data = await res.json;
-      // return data;
+      const res = await axios.delete(`http://localhost:8080/products/${_id}`);
       return _id;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -65,6 +57,24 @@ export const selectProduct = createAsyncThunk(
         },
       });
       return res.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editProduct = createAsyncThunk(
+  'customer/editProduct',
+  async (productData, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      console.log(productData.id);
+      const res = await axios.put(
+        `http://localhost:8080/products/${productData.id}`,
+        productData.formData
+      );
+      console.log(res.data);
+      return res;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -105,6 +115,7 @@ export const productSlice = createSlice({
     },
     [insertProduct.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.error = null;
       state.products.push(action.payload);
     },
     [insertProduct.rejected]: (state, action) => {
@@ -135,6 +146,21 @@ export const productSlice = createSlice({
       state.productInfo = action.payload;
     },
     [selectProduct.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    //Edit product
+    [editProduct.pending]: (state, action) => {
+      console.log(action.payload);
+      state.isLoading = true;
+      state.error = null;
+    },
+    [editProduct.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action.payload);
+    },
+    [editProduct.rejected]: (state, action) => {
+      console.log(action);
       state.isLoading = false;
       state.error = action.payload;
     },
