@@ -12,6 +12,7 @@ import ProductEdit from './pages/ProductEdit/ProductEdit';
 import CategoryAdd from './pages/CategoryAdd/CategoryAdd';
 import CategoryEdit from './pages/CategoryEdit/CategoryEdit';
 import CategoryList from './pages/CategoryList/CategoryList';
+import Login from './pages/Login/Login';
 
 const App = () => {
   return (
@@ -23,7 +24,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/users' element={<UserList />} />
-            <Route path='/users/add' element={<UserAdd/>} />
+            <Route path='/users/add' element={<UserAdd />} />
             <Route path='/users/:id' element={<UserEdit />} />
             <Route path='/category' element={<CategoryList />} />
             <Route path='/category/add' element={<CategoryAdd />} />
@@ -31,6 +32,7 @@ const App = () => {
             <Route path='/products' element={<ProductList />} />
             <Route path='/products/add' element={<ProductAdd />} />
             <Route path='/products/:id' element={<ProductEdit />} />
+             <Route path='/login' element={<Login />} />
             <Route path='*' />
           </Routes>
         </div>

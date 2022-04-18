@@ -49,31 +49,31 @@ const ProductAdd = () => {
             <div className="row justify-content-center  align-items-center mx-auto">
                 <form className='continer px-5 py-5 text-center  mx-auto sign-Up' onSubmit={handleSubmit} encType='multipart/form-data'>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="productName"><i className="fa-solid border p-2 rounded-circle fa-user" role="button"></i></label>
+                        <label htmlFor="productName"><i className="fa-brands border p-2 rounded-circle fa-product-hunt" role="button"></i></label>
                         <input className='form-control w-75 ' placeholder='Enter productName' type="text" name='productName' ref={productName} />
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="company"><i className="fa-solid fa-phone border p-2 rounded-circle " role="button"></i></label>
+                        <label htmlFor="company"><i className="fa-solid fa-building border p-2 rounded-circle " role="button"></i></label>
                         <input className='form-control w-75 ' type="text" placeholder='Enter Your company' name='company' ref={company} />
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="price"><i className="fa-solid fa-at border p-2 rounded-circle  " role="button"></i></label>
+                        <label htmlFor="price"><i className="fa-solid fa-dollar-sign border p-2 rounded-circle  " role="button"></i></label>
                         <input className='form-control w-75 ' type="number" placeholder='Enter Your price' name='price' ref={price} />
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="image"><i className="fa-solid fa-at border p-2 rounded-circle  " role="button"></i></label>
+                        <label htmlFor="image"><i className="fa-solid fa-file border p-2 rounded-circle  " role="button"></i></label>
                         <input className='form-control w-75' type="file" accept=".png,.jpeg,.jpg" name='image' onChange={(e) => setFile(e.target.files[0])} />
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="discount"><i className="fa-solid fa-unlock-keyhole border p-2 rounded-circle " role="button"></i></label>
+                        <label htmlFor="discount"><i className="fa-solid fa-percent border p-2 rounded-circle " role="button"></i></label>
                         <input className='form-control w-75 ' type="text" placeholder='Enter Your discount' name='discount' ref={discount} />
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="expirationDate"><i className="fa-solid fa-unlock-keyhole border p-2 rounded-circle  " role="button"></i></label>
+                        <label htmlFor="expirationDate"><i className="fa-solid fa-calendar-days border p-2 rounded-circle  " role="button"></i></label>
                         <input className='form-control w-75 ' type="date" placeholder='enter Your expirationDate' name='expirationDate' ref={expirationDate} />
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="quantity"><i className="fa-solid border p-2 rounded-circle fa-user  " role="button"></i></label>
+                        <label htmlFor="quantity"><i className="fa-solid border p-2 rounded-circle fa-box  " role="button"></i></label>
                         <input className='form-control w-75 ' type="number" placeholder='Enter Your quantity' name='quantity' ref={quantity} />
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
@@ -81,11 +81,11 @@ const ProductAdd = () => {
                         <input className='form-control w-75' type="text" placeholder='Enter Your countryOfManufacture' name='countryOfManufacture' ref={countryOfManufacture} />
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="description"><i className="fa-solid fa-location-dot border rounded-circle p-2  " role="button"></i></label>
+                        <label htmlFor="description"><i className="fa-solid fa-book border rounded-circle p-2  " role="button"></i></label>
                         <input className='form-control w-75' type="text" placeholder='Enter Your description' name='description' ref={description} />
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="category"><i className="fa-solid fa-location-dot border rounded-circle p-2  " role="button"></i></label>
+                        <label htmlFor="category"><i className="fa-solid fa-boxes-stacked border rounded-circle p-2  " role="button"></i></label>
                         <input className='form-control w-75' type="text" placeholder='Enter Your category' name='category' ref={category} />
                     </div>
                     <button className='btnSubmit btn mt-3' type="submit">Add<i className="fa-solid fa-clipboard-list mx-1"></i></button>

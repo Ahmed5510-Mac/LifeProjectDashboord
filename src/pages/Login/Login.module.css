@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+}
+.form {
+}
+.formControl {
+  margin-bottom: 20px;
+}
+.error {
+  color: red;
+}
