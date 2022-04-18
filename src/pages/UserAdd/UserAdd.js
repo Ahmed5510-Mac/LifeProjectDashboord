@@ -16,10 +16,10 @@ const UserAdd = () => {
     const [customerStreet, setStreet] = useState(null)
     const [customerBuilding, setBuilding] = useState(null)
     const [customerFloor, setFloor] = useState(null)
+    const [file, setFile] = useState(null)
 
     const dispatch = useDispatch()
     let navigate = useNavigate();
-    const [file, setFile] = useState(null)
 
      const  handleSubmit = async  (e) => {
         e.preventDefault()
@@ -31,8 +31,8 @@ const UserAdd = () => {
         formData.append('customerPassword', customerPassword)
         formData.append('confirmPassword', confirmPassword)
         formData.append('role', role.current.value)
-        formData.append('customerAddresses',
-            JSON.stringify([
+        formData.append('customerAddress',
+            JSON.stringify(
                 {
                     country: customerCountry,
                     city: customerCity,
@@ -40,9 +40,10 @@ const UserAdd = () => {
                     buildingNumber: customerBuilding,
                     floorNumber: customerFloor,
                 }
-            ]))
-        dispatch(insertCustomer(formData))
-        navigate("/users", { replace: true })
+            ))
+            dispatch(insertCustomer(formData))
+            dispatch(getCustomers())
+            navigate("/users")
     }
 
     return (

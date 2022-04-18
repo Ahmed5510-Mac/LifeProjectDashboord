@@ -5,10 +5,10 @@ import { useNavigate, NavLink } from "react-router-dom"
 import style from './UserList.module.css';
 
 const UserList = () => {
-  const navigate = useNavigate()
   const { customers, isLoading } = useSelector(state => state.users)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getCustomers())
@@ -24,13 +24,13 @@ const UserList = () => {
     <td className="text-center">{customer.customerPhone}</td>
     <td className="text-center">{customer.role}</td>
     <td className="text-center"><img src={customer.image} alt="image" style={{ width: "50px", height: "50px", borderRadius: "50%" }} /></td>
-    <td><ul>{customer.customerAddresses.map((address, i) => (<li key={i}><ul className='list-unstyled'>
-      <li>Country : {address.country}</li>
-      <li>City : {address.city}</li>
-      <li>Street name : {address.streetName}</li>
-      <li> Building Number{address.buildingNumber}</li>
-      <li> Floor Number{address.floorNumber}</li>
-    </ul></li>))}</ul></td>
+    <td><ul className='list-unstyled'>
+      <li>Country : {customer.customerAddress.country}</li>
+      <li>City : {customer.customerAddress.city}</li>
+      <li>Street name : {customer.customerAddress.streetName}</li>
+      <li> Building Number{customer.customerAddress.buildingNumber}</li>
+      <li> Floor Number{customer.customerAddress.floorNumber}</li>
+    </ul></td>
     <td><span className='fa-solid fa-trash' role="button" onClick={() => handleDelete(customer._id)}></span></td>
     <td><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/users/${customer._id}`, { state: { customerData: customer } }) }} ></span></td>
   </tr>))

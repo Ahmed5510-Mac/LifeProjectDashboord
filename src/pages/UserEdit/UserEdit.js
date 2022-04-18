@@ -13,8 +13,12 @@ const [fullName,setName] = useState(customerInfo.fullName)
 const [image,setFile] = useState(customerInfo.image)
 const [customerPhone,setPhone] = useState(customerInfo.customerPhone)
 const [role,setRole] = useState(customerInfo.role)
-
-
+const [country,setCountry] = useState(customerInfo.customerAddress.country)
+const [city,setCity] = useState(customerInfo.customerAddress.city)
+const [streetName,setStreetName] = useState(customerInfo.customerAddress.streetName)
+const [buildingNumber,setBuildingNumber] = useState(customerInfo.customerAddress.buildingNumber)
+const [floorNumber,setFloorNumber] = useState(customerInfo.customerAddress.floorNumber)
+console.log(fullName,image,customerPhone,role,country,city,streetName,buildingNumber,floorNumber)
 const dispatch = useDispatch()
 const navigate =useNavigate()
 
@@ -25,8 +29,19 @@ e.preventDefault()
  formData.append('image',image)
  formData.append('customerPhone',customerPhone)
  formData.append('role', role)
+ formData.append('customerAddress', JSON.stringify(
+  {
+    country: country,
+    city: city,
+    streetName: streetName,
+    buildingNumber: buildingNumber,
+    floorNumber: floorNumber,
+  }
+))
 
- dispatch(editCustomer({formData:formData,id:id}))
+
+dispatch(editCustomer({formData:formData,id:id}))
+dispatch(getCustomers())
 
  navigate("/users")
 }
@@ -55,6 +70,21 @@ e.preventDefault()
         <option value="Doctor">Doctor</option>
         <option value="Merchant">Merchant</option>
         </select>
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid fa-unlock-keyhole border p-2 rounded-circle me-1'></span><input className='form-control col-md-6' value={country} onChange={(e)=>setCountry(e.target.value)}/>
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid fa-unlock-keyhole border p-2 rounded-circle me-1'></span><input className='form-control col-md-6' value={city} onChange={(e)=>setCity(e.target.value)}/>
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid fa-unlock-keyhole border p-2 rounded-circle me-1'></span><input className='form-control col-md-6' value={streetName} onChange={(e)=>setStreetName(e.target.value)}/>
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid fa-unlock-keyhole border p-2 rounded-circle me-1'></span><input className='form-control col-md-6' value={buildingNumber} onChange={(e)=>setBuildingNumber(e.target.value)}/>
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid fa-unlock-keyhole border p-2 rounded-circle me-1'></span><input className='form-control col-md-6' value={floorNumber} onChange={(e)=>setFloorNumber(e.target.value)}/>
         </div>
         <div className='col-md-4 d-flex me-4 mb-1'>
           <button className='btn btn-primary' type='submit'>Submit</button>

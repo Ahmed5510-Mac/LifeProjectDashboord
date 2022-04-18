@@ -38,6 +38,7 @@ export const deleteCustomer = createAsyncThunk(
   'customer/deleteCustomer',
   async (_id, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
+    
     try {
       const res = await axios.delete(`http://localhost:8080/customer/${_id}`);
       return _id;
