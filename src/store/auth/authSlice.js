@@ -21,8 +21,6 @@ export const logout = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
     try {
       localStorage.removeItem("user");
-      // localStorage.removeItem('cart');
-      localStorage.removeItem("localFavourite");
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -32,10 +30,10 @@ export const logout = createAsyncThunk(
 //Login
 export const login = createAsyncThunk(
   "auth/login",
-  async (values, thunkAPI) => {
+  async (userData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await axios.post("http://localhost:8080/login", values, {
+      const res = await axios.post("http://localhost:8080/login", userData, {
         headers: {
           "Content-type": "application/json;charset=UTF-8",
         },
@@ -66,6 +64,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.user=null
       state.isLoading = false;
       state.isError = false;
       state.isSuccess = false;

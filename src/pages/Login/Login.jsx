@@ -22,16 +22,20 @@ const Login = () => {
             password: ''
         },
         onSubmit: values => {
-            console.log(values)          
-            dispatch(login(values))
-        },
-      /*  const handleSubmit = (e) => {
-            e.preventDefault()
+            console.log(values)
             const userData = {
-                email, password
-            }
-            dispatch(login(userData))
-        }*/
+              email:values.email,
+              password:values.password
+            }             
+        dispatch(login(userData))
+         if(isError) {
+            console.log("error mesage")
+          }
+          if (isSuccess || user) {         
+              navigate('/')
+          }
+        //  dispatch(reset())
+        },
         validationSchema,
     })
 
