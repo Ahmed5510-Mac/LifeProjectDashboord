@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const Topbar = () => {
-    const  user  = useSelector((state) => state.auth);
+    const user = useSelector((state) => state.auth);
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -31,10 +31,12 @@ const Topbar = () => {
                         <SettingsIcon />
                     </div>
                     <img src={img1} alt="" className={style.avatar} />
-                    {!user ?<>not found</>: (
-                        <button className="btn" onClick={() => onLogout()}>
-                            <span className="fa-solid fa-arrow-right-from-bracket text-danger"></span>
+                    {user ? (
+                        <button className="btn logout-lg ms-2  d-md-none d-lg-block rounded-circle bg-white" onClick={onLogout}>
+                            <i className="fa-solid fa-arrow-right-from-bracket  "></i>
                         </button>
+                    ) : (
+                        <></>
                     )}
                 </div>
             </div>

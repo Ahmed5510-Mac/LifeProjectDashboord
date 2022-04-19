@@ -13,6 +13,7 @@ import CategoryAdd from './pages/CategoryAdd/CategoryAdd';
 import CategoryEdit from './pages/CategoryEdit/CategoryEdit';
 import CategoryList from './pages/CategoryList/CategoryList';
 import Login from './pages/Login/Login';
+import NotFound from './pages/NotFound/NotFound';
 
 const App = () => {
   return (
@@ -20,9 +21,9 @@ const App = () => {
       <BrowserRouter>
         <Topbar />
         <div className={style.container}>
-          <Sidebar />
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Login />} />
+            <Route path='/home' element={<Home />} />
             <Route path='/users' element={<UserList />} />
             <Route path='/users/add' element={<UserAdd />} />
             <Route path='/users/:id' element={<UserEdit />} />
@@ -32,8 +33,8 @@ const App = () => {
             <Route path='/products' element={<ProductList />} />
             <Route path='/products/add' element={<ProductAdd />} />
             <Route path='/products/:id' element={<ProductEdit />} />
-             <Route path='/login' element={<Login />} />
-            <Route path='*' />
+            <Route path='/login' element={<Login />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </div>
       </BrowserRouter>

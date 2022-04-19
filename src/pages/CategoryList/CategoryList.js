@@ -7,6 +7,7 @@ import {
 } from '../../store/category/categorySlice';
 import { CircularProgress } from '@material-ui/core';
 import style from './CategoryList.module.css';
+import Sidebar from './../../components/Sidebar/Sidebar';
 
 const CategoryList = () => {
   const { Category, isLoading } = useSelector((state) => state.Category);
@@ -21,6 +22,7 @@ const CategoryList = () => {
 
   return (
     <>
+     <Sidebar />
       <div className={style.categoryList}>
         {isLoading ? (
           <div

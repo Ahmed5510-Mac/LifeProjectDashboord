@@ -3,6 +3,7 @@ import { useEffect, useHistory } from 'react'
 import { getCustomers, deleteCustomer, selectCustomer } from './../../store/user/userSlice';
 import { useNavigate, NavLink } from "react-router-dom"
 import style from './UserList.module.css';
+import Sidebar from './../../components/Sidebar/Sidebar';
 
 const UserList = () => {
   const { customers, isLoading } = useSelector(state => state.users)
@@ -35,6 +36,7 @@ const UserList = () => {
     <td><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/users/${customer._id}`, { state: { customerData: customer } }) }} ></span></td>
   </tr>))
   return (<>
+   <Sidebar /> 
     <div className={style.userList}>
       {isLoading ? 'loading...' : <div className='container'><NavLink to="/users/add" className="btn btn-primary my-2">Add user</NavLink><table className="table table-hover table-bordered table-striped">
         <thead>

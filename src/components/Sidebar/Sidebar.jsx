@@ -14,7 +14,7 @@ const Sidebar = () => {
                         Dashboard
                     </h3>
                     <ul className={style.sidebarList}>
-                        <NavLink to="/" className={style.sidebarListItem}>
+                        <NavLink to="/home" className={style.sidebarListItem}>
                             <LineStyleIcon className={style.sidebarIcon} />Home
                         </NavLink>
                         <li className={style.sidebarListItem}>

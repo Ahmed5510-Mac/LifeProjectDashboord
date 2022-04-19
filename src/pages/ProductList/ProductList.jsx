@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from 'react'
 import { NavLink, useNavigate } from "react-router-dom"
 import { getProducts, deleteProduct } from '../../store/product/productSlice';
+import Sidebar from './../../components/Sidebar/Sidebar';
 
 const ProductList = () => {
   const navigate = useNavigate()
@@ -29,6 +30,7 @@ const ProductList = () => {
   </tr>))
 
   return (<>
+      <Sidebar />
   <div className={style.productList}>
     {isLoading ? 'loading...' : <div className='container'><NavLink to="/products/add" className="btn btn-primary my-2">Add product</NavLink><table className="table table-hover table-bordered table-striped">
       <thead>

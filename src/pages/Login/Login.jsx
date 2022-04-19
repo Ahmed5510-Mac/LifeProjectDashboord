@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { login ,reset} from '../../store/auth/authSlice';
+import { login, reset } from '../../store/auth/authSlice';
 import style from './Login.module.css';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
     email: Yup.string().required('Please Enter your Email').email('Invalid email format'),
     password: Yup.string().required('Please Enter your Password')
+    //    .matches(/^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*\d)(?=\S*[^\w\s])\S{8,}/,'Password should be alpha numeric min 8')
 })
 
 const Login = () => {
@@ -24,33 +25,33 @@ const Login = () => {
         onSubmit: values => {
             console.log(values)
             const userData = {
-              email:values.email,
-              password:values.password
-            }             
-        dispatch(login(userData))
-         if(isError) {
-            console.log("error mesage")
-          }
-          if (isSuccess || user) {         
-              navigate('/')
-          }
-        //  dispatch(reset())
+                email: values.email,
+                password: values.password
+            }
+            dispatch(login(userData))
+            if (isError) {
+                console.log("error mesage")
+            }
+            if (isSuccess || user) {
+                navigate('/')
+            }
+            //  dispatch(reset())
         },
         validationSchema,
     })
 
     useEffect(() => {
         if (isError) {
-          console.log('error message');
+            console.log('error message');
         }
         if (isSuccess || user) {
-            navigate('/')
+            navigate('/home')
         }
         dispatch(reset())
     }, [user, isSuccess, isError, message, navigate, dispatch])
 
     return (<>
-        <div className={style.container}>
+        <div className={style.paper}>
             <form onSubmit={formik.handleSubmit} className={style.form}>
                 <div className={style.formControl}>
                     <label htmlFor="email">Email</label>

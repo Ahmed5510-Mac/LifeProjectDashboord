@@ -1,11 +1,13 @@
-.container {
-  display: flex;
-}
-.form {
-}
 .formControl {
   margin-bottom: 20px;
 }
 .error {
   color: red;
+}
+.paper {
+  height: 100vh;
+  display: 'flex';
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
