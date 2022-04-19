@@ -13,18 +13,7 @@ const Topbar = () => {
                     <span className={style.logo}>Life</span>
                 </div>
                 <div className={style.topRight}>
-                    <div className={style.topbarIconContainer}>
-                        <NotificationsNone />
-                        <span className={style.topIconBadge}>
-                            2
-                        </span>
-                    </div>
-                    <div className={style.topbarIconContainer}>
-                        <LanguageIcon />
-                        <span className={style.topIconBadge}>
-                            2
-                        </span>
-                    </div>
+                  
                     <div className={style.topbarIconContainer}>
                         <SettingsIcon />
                     </div>
