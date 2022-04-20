@@ -18,13 +18,8 @@ export const insertProduct = createAsyncThunk(
   'product/insertProduct',
   async (productData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
-    const config = { headers: { 'content-type': 'multipart/form-data' } };
     try {
-      const res = await axios.post(
-        'http://localhost:8080/products',
-        productData,
-        config
-      );
+      const res = await axios.post('http://localhost:8080/products', productData);
       console.log(res);
       return res;
     } catch (error) {
@@ -91,6 +86,10 @@ const initialState = {
 export const productSlice = createSlice({
   name: 'product',
   initialState,
+
+  reducers:{
+
+  },
   extraReducers: {
     //get-products
     [getProducts.pending]: (state, action) => {
