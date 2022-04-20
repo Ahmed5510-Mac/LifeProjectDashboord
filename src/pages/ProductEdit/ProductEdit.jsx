@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProducts, editProduct } from '../../store/product/productSlice';
 import { getDiscounts } from './../../store/discount/discountSlice';
 import { getCategory } from './../../store/category/categorySlice';
+import Sidebar from './../../components/Sidebar/Sidebar';
 
 function ProductEdit() {
   const location = useLocation()
@@ -54,6 +55,8 @@ function ProductEdit() {
   }
 
   return (
+    <>
+    <Sidebar />
     <div className='container'>
       <form className='row' onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
         <div className='col-md-4 d-flex me-4 mb-1'>
@@ -109,6 +112,7 @@ function ProductEdit() {
         </div>
       </form>
     </div>
+    </>
   )
 }
 

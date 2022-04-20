@@ -2,6 +2,7 @@ import { React, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { insertCategory } from "../../store/category/categorySlice";
+import Sidebar from './../../components/Sidebar/Sidebar';
 
 const CategoryAdd = () => {
   const categoryName = useRef(null);
@@ -18,6 +19,8 @@ const CategoryAdd = () => {
     navigate(`/Category`)
   };
   return (
+    <>
+    <Sidebar/>
     <div className="row justify-content-center  align-items-center mx-auto">
       <form
         className="continer px-5 py-5 text-center  mx-auto sign-Up"
@@ -57,6 +60,7 @@ const CategoryAdd = () => {
         </button>
       </form>
     </div>
+    </>
   );
 };
 

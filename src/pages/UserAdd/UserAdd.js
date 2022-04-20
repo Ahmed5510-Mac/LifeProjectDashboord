@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './UserAdd.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Sidebar from './../../components/Sidebar/Sidebar';
 
 const validationSchema = Yup.object({
   fullName: Yup.string().required('Please Enter your Fullname'),
@@ -72,6 +73,8 @@ const UserAdd = () => {
   });
 
   return (
+    <>
+    <Sidebar/>
     <div className='row justify-content-center  align-items-center mx-auto mb-3'>
       <form
         onSubmit={formik.handleSubmit}
@@ -295,6 +298,7 @@ const UserAdd = () => {
         </button>
       </form>
     </div>
+    </>
   );
 };
 

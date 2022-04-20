@@ -3,6 +3,7 @@ import { React, useState } from "react";
 import { useDispatch } from "react-redux";
 import {  useLocation, useNavigate} from "react-router-dom";
 import { editCategory } from "../../store/category/categorySlice";
+import Sidebar from './../../components/Sidebar/Sidebar';
 
 const CategoryEdit = () => {
   const location=useLocation();
@@ -22,7 +23,7 @@ const CategoryEdit = () => {
     };
 
   return (<>
- 
+ <Sidebar/>
 
  <div className="row justify-content-center  align-items-center mx-auto">
       <form

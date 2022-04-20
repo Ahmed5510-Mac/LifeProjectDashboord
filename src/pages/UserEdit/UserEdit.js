@@ -2,6 +2,7 @@ import {React,useState,useEffect} from 'react'
 import {useLocation,useNavigate } from 'react-router-dom'
 import {useDispatch  } from 'react-redux';
 import { editCustomer ,getCustomers } from './../../store/user/userSlice';
+import Sidebar from './../../components/Sidebar/Sidebar';
 
 function UserEdit() {
 const location = useLocation()
@@ -47,6 +48,9 @@ dispatch(getCustomers())
 }
 
   return (
+    <>
+    <Sidebar/>
+ 
     <div className='container'>
       <form className='row' onSubmit={(e)=>handleSubmit(e)} encType="multipart/form-data">
         <div className='col-md-4 d-flex me-4 mb-1'>
@@ -91,6 +95,7 @@ dispatch(getCustomers())
         </div>
       </form>
     </div>
+    </>
   )
 }
 
