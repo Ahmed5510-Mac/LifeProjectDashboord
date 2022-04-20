@@ -24,8 +24,6 @@ const UserList = () => {
     <td className="text-center">{customer.customerEmail}</td>
     <td className="text-center">{customer.customerPhone}</td>
     <td className="text-center">{customer.role}</td>
-    <td className="text-center"><img src={customer.image} alt="image" style={{ width: "50px", height: "50px", borderRadius: "50%" }} /></td>
- 
     <td><span className='fa-solid fa-trash' role="button" onClick={() => handleDelete(customer._id)}></span></td>
     <td><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/users/${customer._id}`, { state: { customerData: customer } }) }} ></span></td>
   </tr>))
@@ -39,7 +37,6 @@ const UserList = () => {
             <th className="text-center">Customer Email</th>
             <th className="text-center">Customer Phone</th>
             <th className="text-center">Customer Role</th>
-            <th className="text-center">Customer image</th>
           </tr>
         </thead>
         <tbody>{customersList}</tbody>

@@ -46,14 +46,14 @@ const CategoryList = () => {
                 <tr>
                   <th className="text-center">Category Name</th>
                   <th className="text-center">Category image</th>
-                  <th className="text-center">operation</th>
+                  <th className="text-center">Operation</th>
                 </tr>
               </thead>
               <tbody>
                 {Category &&
                   Category.map((Category) => (
                     <tr key={Category._id}>
-                      <td>{Category.name}</td>
+                      <td className="text-center">{Category.name}</td>
                       <td>
                         {' '}
                         <img
@@ -68,7 +68,7 @@ const CategoryList = () => {
                           }}
                         ></img>
                       </td>
-                      <td>
+                      <td className="text-center">
                         <span
                           className='fa-solid fa-trash'
                           onClick={() => handleDelete(Category._id)}

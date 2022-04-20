@@ -18,13 +18,13 @@ const ProductList = () => {
     dispatch(deleteProduct(_id))
   }
   const productsList = products && products.map((product) => (<tr key={product._id}>
-    <td scope="row">{product.productName}</td>
-    <td>{product.company}</td>
-    <td>{product.price}</td>
-    <td>{product.quantity}</td>
-    <td>{product.countryOfManufacture}</td>
-    <td>{product.description}</td>
-    <td>{product.expirationDate.split('T')[0]}</td>
+    <td className="text-center" scope="row">{product.productName}</td>
+    <td className="text-center">{product.company}</td>
+    <td className="text-center">{product.price}</td>
+    <td className="text-center">{product.quantity}</td>
+    <td className="text-center">{product.countryOfManufacture}</td>
+    <td className="text-center">{product.description}</td>
+    <td className="text-center">{product.expirationDate.split('T')[0]}</td>
     <td className={style.productListDelete}><span className='fa-solid fa-trash' onClick={() => handleDelete(product._id)}></span></td>
     <td><span className='fa-solid fa-pen-to-square' role="button"  onClick={() => { navigate(`/products/${product._id}`, { state: { productData: product } }) }} ></span></td>
   </tr>))

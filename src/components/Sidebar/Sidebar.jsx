@@ -17,9 +17,6 @@ const Sidebar = () => {
                         <NavLink to="/home" className={style.sidebarListItem}>
                             <LineStyleIcon className={style.sidebarIcon} />Home
                         </NavLink>
-                        <li className={style.sidebarListItem}>
-                            <TrendingUpIcon className={style.sidebarIcon} />Sales
-                        </li>
                         <NavLink to="/users" className={style.sidebarListItem}>
                             <span className='fa-solid  p-1 fa-user me-1'></span>
                             Users
