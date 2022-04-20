@@ -14,6 +14,9 @@ import CategoryEdit from './pages/CategoryEdit/CategoryEdit';
 import CategoryList from './pages/CategoryList/CategoryList';
 import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
+import DiscountList from './pages/DiscountList/DiscountList';
+import DiscountAdd from './pages/DiscountAdd/DiscountAdd';
+import DiscountEdit from './pages/discountEdit/DiscountEdit';
 
 const App = () => {
   return (
@@ -25,7 +28,10 @@ const App = () => {
             <Route path='/' element={<Login />} />
             <Route path='/home' element={<Home />} />
             <Route path='/users' element={<UserList />} />
+            <Route path='/discounts' element={<DiscountList />} />
             <Route path='/users/add' element={<UserAdd />} />
+            <Route path='/discounts/add' element={<DiscountAdd />} />
+            <Route path='/discounts/:id' element={<DiscountEdit />} />
             <Route path='/users/:id' element={<UserEdit />} />
             <Route path='/category' element={<CategoryList />} />
             <Route path='/category/add' element={<CategoryAdd />} />

@@ -1,10 +1,12 @@
-import { React, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { React, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { insertProduct } from '../../store/product/productSlice';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Sidebar from './../../components/Sidebar/Sidebar';
 import { useNavigate } from 'react-router-dom';
+import { getDiscounts } from '../../store/discount/discountSlice';
+import { getCategory } from '../../store/category/categorySlice';
 
 const validationSchema = Yup.object({
     productName: Yup.string().required('Please Enter your productName'),
@@ -21,6 +23,15 @@ const validationSchema = Yup.object({
 const ProductAdd = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    useEffect(() => {
+        dispatch(getCategory())
+        dispatch(getDiscounts())
+
+    }, [dispatch])
+    const { discounts } = useSelector((state) => state.discount)
+    const categories = useSelector((state) => state.Category.Category)
+    console.log(categories)
+    console.log(discounts)
     const [file, setFile] = useState(null)
 
     const formik = useFormik({
@@ -49,7 +60,7 @@ const ProductAdd = () => {
             formData.append('discount', values.discount)
             formData.append('category', values.category)
             formData.append('expirationDate', values.expirationDate)
-           
+
 
             dispatch(insertProduct(formData))
             navigate("/products")
@@ -59,7 +70,7 @@ const ProductAdd = () => {
 
     return (
         <>
-           <Sidebar />
+            <Sidebar />
             <div className="row justify-content-center  align-items-center mx-auto">
                 <form className='continer px-5 py-5 text-center  mx-auto sign-Up' onSubmit={formik.handleSubmit} encType="multipart/form-data">
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
@@ -72,11 +83,11 @@ const ProductAdd = () => {
 
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="company"><i className="fa-solid fa-building border p-2 rounded-circle " role="button"></i></label>
-                        <input 
-                        className='form-control w-75 ' 
-                        type="text" 
-                        placeholder='Enter Your company'
-                        name='company'
+                        <input
+                            className='form-control w-75 '
+                            type="text"
+                            placeholder='Enter Your company'
+                            name='company'
                             {...formik.getFieldProps('company')} />
                     </div>
                     {formik.touched.company && formik.errors.company ? <div >{formik.errors.company}</div> : null}
@@ -84,10 +95,10 @@ const ProductAdd = () => {
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="price"><i className="fa-solid fa-dollar-sign border p-2 rounded-circle  " role="button"></i></label>
                         <input
-                        className='form-control w-75 ' 
-                        type="number" 
-                        placeholder='Enter Your price' 
-                        name='price'
+                            className='form-control w-75 '
+                            type="number"
+                            placeholder='Enter Your price'
+                            name='price'
                             {...formik.getFieldProps('price')}
                         />
                     </div>
@@ -95,30 +106,30 @@ const ProductAdd = () => {
 
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="image"><i className="fa-solid fa-file border p-2 rounded-circle  " role="button"></i></label>
-                        <input className='form-control w-75' 
-                         type="file" accept=".png,.jpeg,.jpg" name='image'
-                         onChange={(e) => setFile(e.target.files[0])} />
+                        <input className='form-control w-75'
+                            type="file" accept=".png,.jpeg,.jpg" name='image'
+                            onChange={(e) => setFile(e.target.files[0])} />
 
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="discount"><i className="fa-solid fa-percent border p-2 rounded-circle " role="button"></i></label>
-                        <input 
-                          className='form-control w-75 '
-                          type="text" 
-                          placeholder='Enter Your discount'
-                          name='discount'
-                            {...formik.getFieldProps('discount')}
-                        />
-                        {formik.touched.discount && formik.errors.discount ? <div >{formik.errors.discount}</div> : null}
-
+                        <label htmlFor="discount"><i className="fa-solid fa-boxes-stacked border rounded-circle p-2  " role="button"></i></label>
+                        <select className='form-select w-75 mb-1' name="discount"
+                            value={formik.values.discount}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}>
+                            <option selected disapled>Change Discount Amount</option>
+                            {discounts && discounts.map((discount) =>
+                                <option value={discount._id}>{discount.discountAmount}</option>
+                            )}
+                        </select>
                     </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="expirationDate"><i className="fa-solid fa-calendar-days border p-2 rounded-circle  " role="button"></i></label>
-                        <input 
+                        <input
                             className='form-control w-75 '
-                            type="date" 
+                            type="date"
                             placeholder='enter Your expirationDate'
-                            name='expirationDate'    
+                            name='expirationDate'
                             {...formik.getFieldProps('expirationDate')}
                         />
                     </div>
@@ -126,9 +137,9 @@ const ProductAdd = () => {
 
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="quantity"><i className="fa-solid border p-2 rounded-circle fa-box  " role="button"></i></label>
-                        <input 
-                            className='form-control w-75 ' 
-                            type="number" 
+                        <input
+                            className='form-control w-75 '
+                            type="number"
                             placeholder='Enter Your quantity'
                             name='quantity'
                             {...formik.getFieldProps('quantity')}
@@ -138,8 +149,8 @@ const ProductAdd = () => {
 
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="countryOfManufacture"><i className="fa-solid fa-location-dot border rounded-circle p-2  " role="button"></i></label>
-                        <input 
-                            className='form-control w-75' 
+                        <input
+                            className='form-control w-75'
                             type="text"
                             placeholder='Enter Your countryOfManufacture'
                             name='countryOfManufacture'
@@ -158,16 +169,32 @@ const ProductAdd = () => {
                         />
                     </div>
                     {formik.touched.description && formik.errors.description ? <div >{formik.errors.description}</div> : null}
+                    <div className='d-flex align-items-center justify-content-evenly w-100'>
+                        <label htmlFor="role"><i className="fa-solid border p-2 rounded-circle fa-user  " role="button"></i></label>
+                        <select className='form-select w-75 mb-1' name='role'
+                            value={formik.values.role}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur} >
+                            <option selected >Select Your Role</option>
+                            <option value="Doctor">Doctor</option>
+                            <option value="Merchant">Merchant</option>
 
+                        </select>
+
+                    </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="category"><i className="fa-solid fa-boxes-stacked border rounded-circle p-2  " role="button"></i></label>
-                        <input className='form-control w-75'
-                            type="text"
-                            placeholder='Enter Your category' 
-                            name='category'  
-                           {...formik.getFieldProps('category')} />
+                        <select className='form-select w-75 mb-1' name="category"
+                            value={formik.values.category}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}>
+                            <option selected disapled>Change Category</option>
+                            {categories && categories.map((category) =>
+                                <option value={category._id}>{category.name}</option>
+                            )}
+                        </select>
                     </div>
-                    {formik.touched.category && formik.errors.category ? <div >{formik.errors.category}</div> : null}
+
 
                     <button className='btnSubmit btn mt-3' type="submit">Add<i className="fa-solid fa-clipboard-list mx-1"></i></button>
                 </form>

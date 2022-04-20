@@ -1,7 +1,9 @@
 import { React, useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getProducts, editProduct } from '../../store/product/productSlice';
+import { getDiscounts } from './../../store/discount/discountSlice';
+import { getCategory } from './../../store/category/categorySlice';
 
 function ProductEdit() {
   const location = useLocation()
@@ -18,10 +20,19 @@ function ProductEdit() {
   const [description, setDescription] = useState(productInfo.description)
   const [discount, setDiscount] = useState(productInfo.discount)
   const [category, setCategory] = useState(productInfo.category)
-  const [expirationDate, setExpirationDate] = useState(productInfo.expirationDate)
+  const [expirationDate, setExpirationDate] = useState(productInfo.expirationDate.split('T')[0])
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  useEffect(() => {
+    dispatch(getCategory())
+    dispatch(getDiscounts())
+
+  }, [dispatch])
+  const { discounts } = useSelector((state) => state.discount)
+  const categories = useSelector((state) => state.Category.Category)
+  console.log(categories)
+  console.log(discounts)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -33,7 +44,7 @@ function ProductEdit() {
     formData.append('quantity', quantity)
     formData.append('countryOfManufacture', countryOfManufacture)
     formData.append('description', description)
-    formData.append('category',JSON.stringify(category))
+    formData.append('category', JSON.stringify(category))
     formData.append('discount', JSON.stringify(discount))
     formData.append('expirationDate', expirationDate)
 
@@ -64,10 +75,28 @@ function ProductEdit() {
           <span className='fa-solid border p-2 rounded-circle fa-book  me-1'></span><input className='form-control col-md-6' value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
         <div className='col-md-4 d-flex me-4 mb-1'>
-          <span className='fa-solid border p-2 rounded-circle fa-percent me-1'></span><input className='form-control col-md-6' value={discount} onChange={(e) => setDiscount(e.target.value)} />
+          <span className='fa-solid border p-2 rounded-circle fa-percent me-1'></span><input className='form-control col-md-6' disabled value={discount.discountAmount} onChange={(e) => setDiscount(e.target.value)} /><br />
         </div>
         <div className='col-md-4 d-flex me-4 mb-1'>
-          <span className='fa-solid border p-2 rounded-circle fa-boxes-stacked me-1'></span><input className='form-control col-md-6' value={category} onChange={(e) => setCategory(e.target.value)} />
+          <span className='fa-solid border p-2 rounded-circle fa-percent me-1'></span>
+          <select className='form-select' onChange={(e) => setDiscount(e.target.value)}>
+            <option selected disapled>Change discount Amount</option>
+            {discounts && discounts.map((discount) =>
+              <option value={discount._id}>{discount.discountAmount}</option>
+            )}
+          </select>
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+          <span className='fa-solid border p-2 rounded-circle fa-boxes-stacked me-1'></span><input className='form-control col-md-6' disabled value={category.name} onChange={(e) => setCategory(e.target.value)} /><br />
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+          <span className='fa-solid border p-2 rounded-circle fa-book  me-1'></span>
+          <select className='form-select' onChange={(e) => setCategory(e.target.value)}>
+            <option selected disapled>Change Category</option>
+            {categories && categories.map((Category) =>
+              <option value={Category._id}>{Category.name}</option>
+            )}
+          </select>
         </div>
         <div className='col-md-4 d-flex me-4 mb-1'>
           <span className='fa-solid border p-2 rounded-circle fa-calendar-days me-1'></span><input className='form-control col-md-6' value={expirationDate} onChange={(e) => setExpirationDate(e.target.value)} />
