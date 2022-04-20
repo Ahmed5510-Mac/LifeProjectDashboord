@@ -1,13 +1,64 @@
-.formControl {
-  margin-bottom: 20px;
+.container{
+    background-image: url('../../assets/bg.png');
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.error {
-  color: red;
+.formContainer{
+    background-color: white;
+    width: 30%;
+    height: 50%;
+    
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.paper {
-  height: 100vh;
-  display: 'flex';
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.form{
+  
+}
+.btnLogin{
+    text-align: center;
+    color: black;
+    padding: 5px;
+    border: 10px;
+}
+.btnSubmit{
+    margin-top: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 5px;
+    width:100px;
+}
+.email{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    margin-bottom: 10px;
+}
+.password{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
