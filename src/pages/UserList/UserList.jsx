@@ -25,13 +25,7 @@ const UserList = () => {
     <td className="text-center">{customer.customerPhone}</td>
     <td className="text-center">{customer.role}</td>
     <td className="text-center"><img src={customer.image} alt="image" style={{ width: "50px", height: "50px", borderRadius: "50%" }} /></td>
-    <td><ul className='list-unstyled'>
-      <li>Country : {customer.customerAddress.country}</li>
-      <li>City : {customer.customerAddress.city}</li>
-      <li>Street name : {customer.customerAddress.streetName}</li>
-      <li> Building Number{customer.customerAddress.buildingNumber}</li>
-      <li> Floor Number{customer.customerAddress.floorNumber}</li>
-    </ul></td>
+ 
     <td><span className='fa-solid fa-trash' role="button" onClick={() => handleDelete(customer._id)}></span></td>
     <td><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/users/${customer._id}`, { state: { customerData: customer } }) }} ></span></td>
   </tr>))
@@ -41,12 +35,11 @@ const UserList = () => {
       {isLoading ? 'loading...' : <div className='container'><NavLink to="/users/add" className="btn btn-primary my-2">Add user</NavLink><table className="table table-hover table-bordered table-striped">
         <thead>
           <tr>
-            <th>Customer Name</th>
-            <th>Customer Email</th>
-            <th>Customer Phone</th>
-            <th>Customer Role</th>
-            <th>Customer image</th>
-            <th>Customer Addresses</th>
+            <th className="text-center">Customer Name</th>
+            <th className="text-center">Customer Email</th>
+            <th className="text-center">Customer Phone</th>
+            <th className="text-center">Customer Role</th>
+            <th className="text-center">Customer image</th>
           </tr>
         </thead>
         <tbody>{customersList}</tbody>
@@ -58,3 +51,14 @@ const UserList = () => {
 }
 
 export default UserList;
+/*
+
+   <td><ul className='list-unstyled'>
+      <li>Country : {customer.customerAddress.country}</li>
+      <li>City : {customer.customerAddress.city}</li>
+      <li>Street name : {customer.customerAddress.streetName}</li>
+      <li> Building Number{customer.customerAddress.buildingNumber}</li>
+      <li> Floor Number{customer.customerAddress.floorNumber}</li>
+    </ul></td>
+
+*/

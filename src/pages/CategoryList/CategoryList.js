@@ -44,9 +44,9 @@ const CategoryList = () => {
             <table className='table table-hover table-bordered table-striped'>
               <thead>
                 <tr>
-                  <th>Category Name</th>
-                  <th>Category image</th>
-                  <th>operation</th>
+                  <th className="text-center">Category Name</th>
+                  <th className="text-center">Category image</th>
+                  <th className="text-center">operation</th>
                 </tr>
               </thead>
               <tbody>

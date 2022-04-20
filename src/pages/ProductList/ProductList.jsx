@@ -35,13 +35,13 @@ const ProductList = () => {
     {isLoading ? 'loading...' : <div className='container'><NavLink to="/products/add" className="btn btn-primary my-2">Add product</NavLink><table className="table table-hover table-bordered table-striped">
       <thead>
         <tr>
-          <th>Product Name</th>
-          <th>Company</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>CountryOfManufacture</th>
-          <th>Description</th>
-          <th>ExpirationDate</th>
+          <th className="text-center">Product Name</th>
+          <th className="text-center">Company</th>
+          <th className="text-center">Price</th>
+          <th className="text-center">Quantity</th>
+          <th className="text-center">CountryOfManufacture</th>
+          <th className="text-center">Description</th>
+          <th className="text-center">ExpirationDate</th>
         </tr>
       </thead>
       <tbody>{productsList}</tbody>
