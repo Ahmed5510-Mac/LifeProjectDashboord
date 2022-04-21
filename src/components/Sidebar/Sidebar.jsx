@@ -25,6 +25,14 @@ const Sidebar = () => {
                             <span className='fa-brands  p-1 fa-product-hunt me-1'></span>
                             Products
                         </NavLink>
+                        <NavLink to="/discounts" className={style.sidebarListItem}>
+                            <span className='fa-solid fa-percent me-1'></span>
+                            Discounts
+                        </NavLink>
+                        <NavLink to="/orders" className={style.sidebarListItem}>
+                            <span className='fa-solid fa-cart-shopping me-1'></span>
+                            Orders
+                        </NavLink>
                         <NavLink to="/category" className={style.sidebarListItem}>
                             <span className='fa-brands fa-deezer p-1  me-1'></span>
                             Categories

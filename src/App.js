@@ -17,6 +17,7 @@ import NotFound from './pages/NotFound/NotFound';
 import DiscountList from './pages/DiscountList/DiscountList';
 import DiscountAdd from './pages/DiscountAdd/DiscountAdd';
 import DiscountEdit from './pages/discountEdit/DiscountEdit';
+import OrdersList from './pages/OrdersList/OrdersList.jsx';
 
 const App = () => {
   return (
@@ -32,6 +33,8 @@ const App = () => {
             <Route path='/users/add' element={<UserAdd />} />
             <Route path='/discounts/add' element={<DiscountAdd />} />
             <Route path='/discounts/:id' element={<DiscountEdit />} />
+            <Route path='/orders' element={<OrdersList />} />
+
             <Route path='/users/:id' element={<UserEdit />} />
             <Route path='/category' element={<CategoryList />} />
             <Route path='/category/add' element={<CategoryAdd />} />

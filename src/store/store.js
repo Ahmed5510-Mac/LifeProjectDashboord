@@ -4,6 +4,7 @@ import CategorySlice from './category/categorySlice';
 import productSlice from './product/productSlice';
 import userSlice from './user/userSlice';
 import discountSlice  from './discount/discountSlice';
+import orderSlice from './orders/ordersSlice';
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -15,6 +16,8 @@ export const store = configureStore({
     Category: CategorySlice,
     users: userSlice,
     auth: authReducer,
-    discount:discountSlice
+    discount:discountSlice,
+    order:orderSlice
+
   },
 });
