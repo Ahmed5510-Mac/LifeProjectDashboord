@@ -18,6 +18,8 @@ import DiscountList from './pages/DiscountList/DiscountList';
 import DiscountAdd from './pages/DiscountAdd/DiscountAdd';
 import DiscountEdit from './pages/discountEdit/DiscountEdit';
 import OrdersList from './pages/OrdersList/OrdersList.jsx';
+import Reports from './pages/Reports/Reports';
+import Employees from './pages/Employees/Employees';
 
 const App = () => {
   return (
@@ -42,7 +44,10 @@ const App = () => {
             <Route path='/products' element={<ProductList />} />
             <Route path='/products/add' element={<ProductAdd />} />
             <Route path='/products/:id' element={<ProductEdit />} />
+            
             <Route path='/login' element={<Login />} />
+            <Route path='/reports' element={<Reports />} />
+            <Route path='/employees' element={<Employees />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </div>

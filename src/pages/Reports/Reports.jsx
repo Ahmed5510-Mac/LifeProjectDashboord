@@ -3,14 +3,18 @@ import PieChart from '../../components/PieChart/PieChart'
 import Chart from '../../components/Chart/Chart'
 import { productsData } from '../../dummyData'
 import { data } from '../../data'
+import Sidebar from './../../components/Sidebar/Sidebar';
+import style from './Reports.module.css';
 
 const Reports = () => {
   return (
     <>
+      <Sidebar />
+      <div className={style.reportsList}>
       <div className="container-fluid ">
         <div className="row ">
           <div className="col-4 mt-3">
-            <LinearChart data={data}/>
+            <LinearChart data={data} />
           </div>
           <div className="col-1 ">
             <PieChart data={data} />
@@ -26,6 +30,7 @@ const Reports = () => {
             />
           </div>
         </div>
+      </div>
       </div>
     </>
   )

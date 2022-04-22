@@ -10,11 +10,14 @@
     color: white;
 }
 .sidebarMenu{
+   
     margin-bottom: 10px;
 }
 .sidebarTitle{
     font-size: 13px;
     color: rgb(245, 166, 166);
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .sidebarList{
     padding: 5px;
