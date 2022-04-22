@@ -6,6 +6,7 @@ import userSlice from './user/userSlice';
 import discountSlice  from './discount/discountSlice';
 import orderSlice from './orders/ordersSlice';
 import employeeSlice from './employee/employeeSlice';
+import storeSlice from './store/storeSlice';
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -15,6 +16,7 @@ export const store = configureStore({
   reducer: {
     products: productSlice,
     Category: CategorySlice,
+    stores: storeSlice,
     users: userSlice,
     auth: authReducer,
     discount:discountSlice,

@@ -22,7 +22,9 @@ import Reports from './pages/Reports/Reports';
 import EmployeesList from './pages/EmployeesList/EmployeesList';
 import EmployeesAdd from './pages/EmployeesAdd/EmployeesAdd';
 import EmployeesEdit from './pages/EmployeesEdit/EmployeesEdit';
-
+import StoreList from './pages/StoreList/StoreList';
+import StoreAdd from './pages/StoreAdd/StoreAdd';
+import StoreEdit from './pages/StoreEdit/StoreEdit';
 const App = () => {
   return (
     <>
@@ -46,6 +48,11 @@ const App = () => {
             <Route path='/products' element={<ProductList />} />
             <Route path='/products/add' element={<ProductAdd />} />
             <Route path='/products/:id' element={<ProductEdit />} />
+
+            <Route path='/stores' element={<StoreList />} />
+            <Route path='/stores/add' element={<StoreAdd />} />
+            <Route path='/stores/:id/edit' element={<StoreEdit />} />
+            
             
             <Route path='/login' element={<Login />} />
             <Route path='/reports' element={<Reports />} />

@@ -47,7 +47,7 @@ const Sidebar = () => {
                             <span className='fa-solid fa-users p-1  me-1'></span>
                             Employees
                         </NavLink>
-                        <NavLink to="/store" className={style.sidebarListItem}>
+                        <NavLink to="/stores" className={style.sidebarListItem}>
                             <span className='fa-solid fa-store p-1  me-1'></span>
                             Store
                         </NavLink>
