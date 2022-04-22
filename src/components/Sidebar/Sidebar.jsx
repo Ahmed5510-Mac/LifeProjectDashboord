@@ -21,6 +21,10 @@ const Sidebar = () => {
                             <span className='fa-solid  p-1 fa-user me-1'></span>
                             Users
                         </NavLink>
+                        <NavLink to="/blackListCustomers" className={style.sidebarListItem}>
+                            <span className='fa-solid fa-user-slash p-1 me-1'></span>
+                            BlackList Users
+                        </NavLink>
                         <NavLink to="/products" className={style.sidebarListItem}>
                             <span className='fa-brands  p-1 fa-product-hunt me-1'></span>
                             Products
@@ -32,6 +36,16 @@ const Sidebar = () => {
                             <span className='fa-solid fa-percent me-1'></span>
                             Discounts
                         </NavLink>
+                        <NavLink to="/orders" className={style.sidebarListItem}>
+                           <span className='fa-solid fa-cart-shopping me-1'></span>
+                           Pending Orders
+                        </NavLink>
+                        <NavLink to="/confirmedOrders" className={style.sidebarListItem}><span className='fa-solid fa-cart-shopping me-1'></span>
+                            Confirmed orders
+                            </NavLink>
+                            <NavLink to="/rejectedOrders" className={style.sidebarListItem}><span className='fa-solid fa-cart-shopping me-1'></span>
+                            Rejected orders
+                            </NavLink>
                         <NavLink to="/orders" className={style.sidebarListItem}>
                             <span className='fa-solid fa-cart-shopping me-1'></span>
                             Orders

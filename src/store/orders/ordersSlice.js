@@ -50,7 +50,7 @@ export const editOrder = createAsyncThunk(
         try {
             const res = await axios.put(
                 `http://localhost:8080/orders/${orderData.id}`,
-                orderData.formData
+                orderData.confirmed
             );
             console.log(res.data);
             return res;
@@ -66,6 +66,9 @@ const initialState = {
     isConfirmed:false,
     error: null,
     orderInfo: null,
+    inProgressOrders:null,
+    confirmedOrders:null,
+    rejectedOrders:null,
 };
 
 export const orderSlice = createSlice({
@@ -87,7 +90,11 @@ export const orderSlice = createSlice({
         [getOrders.fulfilled]: (state, action) => {
             console.log("from get fulfield", action.payload);
             state.isLoading = false;
-            state.orders = action.payload;
+            // state.orders = action.payload;
+            state.inProgressOrders = action.payload.filter((order)=> order.status === "inProgress");
+            state.confirmedOrders  = action.payload.filter((order)=> order.status === "Confirmed");
+            state.rejectedOrders   = action.payload.filter((order)=> order.status === "Rejected");
+            
         },
         [getOrders.rejected]: (state, action) => {
             console.log(action);

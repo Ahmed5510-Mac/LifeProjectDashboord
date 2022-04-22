@@ -27,8 +27,8 @@ export const insertCustomer = createAsyncThunk(
         body:customerData,
             }) 
       console.log(res)
-      return res;
-    } catch (error) {
+      return res.data.data;
+      } catch (error) {
       return rejectWithValue(error.message);
     }
   }
@@ -101,8 +101,8 @@ export const userSlice = createSlice({
       console.log(action.payload)
       console.log(state.customers)
       state.isLoading = false;
-      state.customers.push(action.payload);
-    },
+      state.customers=action.payload;
+        },
     [insertCustomer.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;

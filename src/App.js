@@ -25,6 +25,10 @@ import EmployeesEdit from './pages/EmployeesEdit/EmployeesEdit';
 import StoreList from './pages/StoreList/StoreList';
 import StoreAdd from './pages/StoreAdd/StoreAdd';
 import StoreEdit from './pages/StoreEdit/StoreEdit';
+import ConfirmedOrders from  './pages/OrdersList/ConfirmedOrders/ConfirmedOrders';
+import RejectedOrders from  './pages/OrdersList/RejectedOrders/RejectedOrders';
+import OrdersEdit from "./pages/OrdersEdit/OrdersEdit"
+import BlackListUsers from './pages/UserList/BlackListUsers';
 const App = () => {
   return (
     <>
@@ -35,13 +39,19 @@ const App = () => {
             <Route path='/' element={<Login />} />
             <Route path='/home' element={<Home />} />
             <Route path='/users' element={<UserList />} />
-            <Route path='/discounts' element={<DiscountList />} />
+            <Route path='/blackListCustomers' element={<BlackListUsers />} />
             <Route path='/users/add' element={<UserAdd />} />
+            <Route path='/users/:id' element={<UserEdit />} />
+
+            <Route path='/discounts' element={<DiscountList />} />
             <Route path='/discounts/add' element={<DiscountAdd />} />
             <Route path='/discounts/:id' element={<DiscountEdit />} />
-            <Route path='/orders' element={<OrdersList />} />
 
-            <Route path='/users/:id' element={<UserEdit />} />
+            <Route path='/orders' element={<OrdersList />} />
+            <Route path='/orders/:id' element={<OrdersEdit />} />
+            <Route path='/rejectedOrders' element={<RejectedOrders />} />
+            <Route path='/confirmedOrders' element={<ConfirmedOrders />} />
+
             <Route path='/category' element={<CategoryList />} />
             <Route path='/category/add' element={<CategoryAdd />} />
             <Route path='/category/:id/edit' element={<CategoryEdit />} />

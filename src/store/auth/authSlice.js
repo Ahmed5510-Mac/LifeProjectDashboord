@@ -57,6 +57,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
+  blackListUsers:null,
 };
 
 export const authSlice = createSlice({
@@ -104,6 +105,7 @@ export const authSlice = createSlice({
     [getUsers.fulfilled]: (state, action) => {
       console.log(action);
       state.isLoading = false;
+      state.blackListUsers= action.payload.filter((customer)=>customer.blackList === true)
       state.user = action.payload;
     },
     [getUsers.rejected]: (state, action) => {
