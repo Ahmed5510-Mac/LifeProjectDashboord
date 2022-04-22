@@ -24,8 +24,8 @@ const UserList = () => {
     <td className="text-center">{customer.customerEmail}</td>
     <td className="text-center">{customer.customerPhone}</td>
     <td className="text-center">{customer.role}</td>
-    <td><span className='fa-solid fa-trash' role="button" onClick={() => handleDelete(customer._id)}></span></td>
-    <td><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/users/${customer._id}`, { state: { customerData: customer } }) }} ></span></td>
+   {/*<td><span className='fa-solid fa-trash' role="button" onClick={() => handleDelete(customer._id)}></span></td> */} 
+    <td className="text-center"><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/users/${customer._id}`, { state: { customerData: customer } }) }} ></span></td>
   </tr>))
   return (<>
    <Sidebar /> 

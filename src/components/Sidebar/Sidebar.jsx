@@ -11,7 +11,7 @@ const Sidebar = () => {
             <div className={style.sidebarWrapper}>
                 <div className={style.sidebarMenu}>
                     <h3 className={style.sidebarTitle}>
-                        Dashboard
+                        Quick Menu
                     </h3>
                     <ul className={style.sidebarList}>
                         <NavLink to="/home" className={style.sidebarListItem}>
@@ -44,15 +44,15 @@ const Sidebar = () => {
                             Staff
                         </h3>
                         <NavLink to="/employees" className={style.sidebarListItem}>
-                            <span className='fa-brands fa-deezer p-1  me-1'></span>
+                            <span className='fa-solid fa-users p-1  me-1'></span>
                             Employees
                         </NavLink>
                         <NavLink to="/store" className={style.sidebarListItem}>
-                            <span className='fa-brands fa-deezer p-1  me-1'></span>
+                            <span className='fa-solid fa-store p-1  me-1'></span>
                             Store
                         </NavLink>
                         <NavLink to="/reports" className={style.sidebarListItem}>
-                            <span className='fa-brands fa-deezer p-1  me-1'></span>
+                            <span className='fa-solid fa-file p-1  me-1'></span>
                             Reports
                         </NavLink>
                     </ul>

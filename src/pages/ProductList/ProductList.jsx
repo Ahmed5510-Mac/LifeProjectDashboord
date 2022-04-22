@@ -25,8 +25,8 @@ const ProductList = () => {
     <td className="text-center">{product.countryOfManufacture}</td>
     <td className="text-center">{product.description}</td>
     <td className="text-center">{product.expirationDate.split('T')[0]}</td>
-    <td className={style.productListDelete}><span className='fa-solid fa-trash' onClick={() => handleDelete(product._id)}></span></td>
-    <td><span className='fa-solid fa-pen-to-square' role="button"  onClick={() => { navigate(`/products/${product._id}`, { state: { productData: product } }) }} ></span></td>
+   {/*<td className={style.productListDelete}><span className='fa-solid fa-trash' onClick={() => handleDelete(product._id)}></span></td> */} 
+    <td className="text-center"><span className='fa-solid fa-pen-to-square' role="button"  onClick={() => { navigate(`/products/${product._id}`, { state: { productData: product } }) }} ></span></td>
   </tr>))
 
   return (<>
