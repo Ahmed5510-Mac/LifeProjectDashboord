@@ -26,6 +26,7 @@ const CategoryAdd = () => {
         className="continer px-5 py-5 text-center  mx-auto sign-Up"
         onSubmit={(e)=>handleSubmit(e)} encType='multipart/form-data'
       >
+          <h2 className='mb-4 fw-bold'>Add Category</h2>
         <div className="d-flex align-items-center justify-content-evenly w-100">
           <label htmlFor="name">
             <i

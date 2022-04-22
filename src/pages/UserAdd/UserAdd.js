@@ -80,6 +80,7 @@ const UserAdd = () => {
         onSubmit={formik.handleSubmit}
         className='continer px-5 py-5 text-center  mx-auto sign-Up'
       >
+        <h2 className='mb-4 fw-bold'>Add User</h2>
         <div className='d-flex align-items-center justify-content-evenly w-100'>
           <label htmlFor='fullName'>
             <i

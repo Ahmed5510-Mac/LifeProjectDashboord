@@ -53,6 +53,7 @@ dispatch(getCustomers())
  
     <div className='container'>
       <form className='row' onSubmit={(e)=>handleSubmit(e)} encType="multipart/form-data">
+      <h2 className='mb-4 fw-bold'>Edit User</h2>
         <div className='col-md-4 d-flex me-4 mb-1'>
         <span className='fa-solid border p-2 rounded-circle fa-user me-1'></span><input className='form-control col-md-6' value={fullName} onChange={(e)=>setName(e.target.value)}/>
         </div>

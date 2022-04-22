@@ -59,6 +59,7 @@ function ProductEdit() {
     <Sidebar />
     <div className='container'>
       <form className='row' onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
+      <h2 className='mb-4 fw-bold'>Edit Product</h2>
         <div className='col-md-4 d-flex me-4 mb-1'>
           <span className='fa-brands border p-2 rounded-circle fa-product-hunt me-1'></span><input className='form-control col-md-6' value={productName} onChange={(e) => setproductName(e.target.value)} />
         </div>

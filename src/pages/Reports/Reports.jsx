@@ -9,8 +9,9 @@ import style from './Reports.module.css';
 const Reports = () => {
   return (
     <>
-      <Sidebar />
+      <Sidebar />   
       <div className={style.reportsList}>
+      <h2 className='mb-4 text-center fw-bold'>Reports</h2>
       <div className="container-fluid ">
         <div className="row ">
           <div className="col-4 mt-3">

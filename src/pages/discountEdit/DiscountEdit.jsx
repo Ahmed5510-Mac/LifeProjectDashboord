@@ -71,6 +71,7 @@ const { discounts } = useSelector((state) => state.discount)
         <Sidebar />
         <div className="row justify-content-center  align-items-center mx-auto">
             <form className='continer px-5 py-5 text-center  mx-auto sign-Up' onSubmit={formik.handleSubmit} encType="multipart/form-data">
+            <h2 className='mb-4 fw-bold'>Edit Discount</h2>
                 <div className='d-flex align-items-center justify-content-evenly w-100'>
                     <label htmlFor="discountAmount"><i className="fa-brands border p-2 rounded-circle fa-product-hunt" role="button"></i></label>
                     <input className='form-control w-75 ' placeholder='Enter Discount Amount'  type="text" name='discountAmount'
