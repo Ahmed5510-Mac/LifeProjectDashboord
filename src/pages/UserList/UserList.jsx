@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useHistory } from 'react'
+import { useEffect, useHistory,useState } from 'react'
 import { editCustomer, getCustomers } from './../../store/user/userSlice';
 import { useNavigate, NavLink } from "react-router-dom"
 import style from './UserList.module.css';
@@ -13,82 +13,105 @@ const UserList = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [contentPerPage, setcontentPerPage] = useState(5)
+  const pageNumbers = []
+
+
   useEffect(() => {
     dispatch(getCustomers())
     dispatch(getUsers())
   }, [dispatch])
 
   const addToBlackList = (customer) => {
-    
-      const formData = new FormData();
-      formData.append('fullName',customer.fullName)
-      formData.append('image',customer.image)
-      formData.append('customerPhone',customer.customerPhone)
-      formData.append('role', customer.role)
-      formData.append('customerAddress', JSON.stringify(
-       {
-         country: customer.customerAddress.country,
-         city: customer.customerAddress.city,
-         streetName: customer.customerAddress.streetName,
-         buildingNumber: customer.customerAddress.buildingNumber,
-         floorNumber: customer.customerAddress.floorNumber,
-       }
-     ))
-     formData.append('blackList', true)
-    
-      dispatch(editCustomer({formData:formData,id:customer._id}))
-      dispatch(getUsers())
-      navigate("/blackListCustomers")
-    
 
-  }
-  const removeFromBlackList=(customer)=>{
-    // confirm("Are You sure to remove from Blacklist")
     const formData = new FormData();
-    formData.append('fullName',customer.fullName)
-    formData.append('image',customer.image)
-    formData.append('customerPhone',customer.customerPhone)
+    formData.append('fullName', customer.fullName)
+    formData.append('image', customer.image)
+    formData.append('customerPhone', customer.customerPhone)
     formData.append('role', customer.role)
     formData.append('customerAddress', JSON.stringify(
-     {
-       country: customer.customerAddress.country,
-       city: customer.customerAddress.city,
-       streetName: customer.customerAddress.streetName,
-       buildingNumber: customer.customerAddress.buildingNumber,
-       floorNumber: customer.customerAddress.floorNumber,
-     }
-   ))
-   formData.append('blackList', false)
-   
-   dispatch(editCustomer({formData:formData,id:customer._id}))
-   navigate("/users")
-   dispatch(getCustomers())
-}
+      {
+        country: customer.customerAddress.country,
+        city: customer.customerAddress.city,
+        streetName: customer.customerAddress.streetName,
+        buildingNumber: customer.customerAddress.buildingNumber,
+        floorNumber: customer.customerAddress.floorNumber,
+      }
+    ))
+    formData.append('blackList', true)
 
-  const customersList = customers && customers.map((customer) => (<tr key={customer._id} style={{textDecoration:`${customer.blackList ? "line-through" : " "}`}}>
+    dispatch(editCustomer({ formData: formData, id: customer._id }))
+    dispatch(getUsers())
+    navigate("/blackListCustomers")
+
+
+  }
+  const removeFromBlackList = (customer) => {
+    // confirm("Are You sure to remove from Blacklist")
+    const formData = new FormData();
+    formData.append('fullName', customer.fullName)
+    formData.append('image', customer.image)
+    formData.append('customerPhone', customer.customerPhone)
+    formData.append('role', customer.role)
+    formData.append('customerAddress', JSON.stringify(
+      {
+        country: customer.customerAddress.country,
+        city: customer.customerAddress.city,
+        streetName: customer.customerAddress.streetName,
+        buildingNumber: customer.customerAddress.buildingNumber,
+        floorNumber: customer.customerAddress.floorNumber,
+      }
+    ))
+    formData.append('blackList', false)
+
+    dispatch(editCustomer({ formData: formData, id: customer._id }))
+    navigate("/users")
+    dispatch(getCustomers())
+  }
+
+  for (let index = 1; index < Math.ceil(contentPerPage); index++) {
+    pageNumbers.push(index)
+  }
+
+  const indexOfLastItem = currentPage * contentPerPage
+  const indexOfFirstItem = indexOfLastItem - contentPerPage
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
+  const customersList = customers && customers.map((customer) => (<tr key={customer._id} style={{ textDecoration: `${customer.blackList ? "line-through" : " "}` }}>
     <td scope="row" className="text-center">{customer.fullName}</td>
     <td className="text-center">{customer.customerEmail}</td>
     <td className="text-center">{customer.customerPhone}</td>
     <td className="text-center">{customer.role}</td>
-    <td className="text-center">{customer.blackList ? <span className='fa-solid fa-ban' role="button" onClick={() => removeFromBlackList(customer)}></span>:
-    <span className='fa-solid fa-ban' role="button" onClick={() => addToBlackList(customer)}></span> }</td>
+    <td className="text-center">{customer.blackList ? <span className='fa-solid fa-ban' role="button" onClick={() => removeFromBlackList(customer)}></span> :
+      <span className='fa-solid fa-ban' role="button" onClick={() => addToBlackList(customer)}></span>}</td>
     <td><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/users/${customer._id}`, { state: { customerData: customer } }) }} ></span></td>
   </tr>))
 
   return (<>
-   <Sidebar /> 
+    <Sidebar />
     <div className={style.userList}>
-      {isLoading ? 'loading...' : <div className='container'><NavLink to="/users/add" className="btn btn-primary my-2">Add Customer</NavLink><h2 className="text-center text-dark my-2">Customers List</h2><table className="table table-hover table-bordered table-striped">
-        <thead>
-          <tr>
-            <th className="text-center">Customer Name</th>
-            <th className="text-center">Customer Email</th>
-            <th className="text-center">Customer Phone</th>
-            <th className="text-center">Customer Role</th>
-          </tr>
-        </thead>
-        <tbody>{customersList}</tbody>
-      </table>
+
+      {isLoading ? 'loading...' : <div className='container'>
+        <h2 className="text-center text-dark my-2">Customers List</h2>
+        <NavLink to="/users/add" className="btn btn-primary my-2">Add Customer</NavLink><table className="table table-hover table-bordered table-striped">
+          <thead>
+            <tr>
+              <th className="text-center">Customer Name</th>
+              <th className="text-center">Customer Email</th>
+              <th className="text-center">Customer Phone</th>
+              <th className="text-center">Customer Role</th>
+            </tr>
+          </thead>
+          <tbody>{customersList.slice(indexOfFirstItem, indexOfLastItem)}</tbody>
+        </table>
+        <ul className={style.listItem}>
+          {pageNumbers.map(number => (<li className={style.ulItem} key={number}>
+            <NavLink to="/users" onClick={() => paginate(number)}>{number}</NavLink>
+          </li>))}
+        </ul>
       </div>
       }
     </div>

@@ -45,7 +45,9 @@ const EmployeesList = () => {
   return (<>
     <Sidebar />
     <div className={style.employeesList}>
-      {isLoading ? 'loading...' : <div className='container'><NavLink to="/employees/add" className="btn btn-primary my-2">Add employee</NavLink><table className="table table-hover table-bordered table-striped">
+      {isLoading ? 'loading...' : <div className='container'>
+      <h2 className="text-center text-dark my-2">Employees List</h2>
+        <NavLink to="/employees/add" className="btn btn-primary my-2">Add employee</NavLink><table className="table table-hover table-bordered table-striped">
         <thead>
           <tr>
             <th className="text-center">Employee Name</th>

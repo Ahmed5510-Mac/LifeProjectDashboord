@@ -49,7 +49,9 @@ const ProductList = () => {
   return (<>
     <Sidebar />
     <div className={style.productList}>
-      {isLoading ? 'loading...' : <div className='container'><NavLink to="/products/add" className="btn btn-primary my-2">Add product</NavLink><table className="table table-hover table-bordered table-striped">
+      {isLoading ? 'loading...' : <div className='container'>
+      <h2 className="text-center text-dark my-2">Products List</h2>
+        <NavLink to="/products/add" className="btn btn-primary my-2">Add product</NavLink><table className="table table-hover table-bordered table-striped">
         <thead>
           <tr>
             <th className="text-center">Product Name</th>
