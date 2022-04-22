@@ -95,7 +95,7 @@ const UserList = () => {
     <div className={style.userList}>
 
       {isLoading ? 'loading...' : <div className='container'>
-        <h2 className="text-center text-dark my-2">Customers List</h2>
+        <h2 className="text-center fw-bold text-dark my-2">Customers List</h2>
         <NavLink to="/users/add" className="btn btn-primary my-2">Add Customer</NavLink><table className="table table-hover table-bordered table-striped">
           <thead>
             <tr>
@@ -108,10 +108,13 @@ const UserList = () => {
           <tbody>{customersList.slice(indexOfFirstItem, indexOfLastItem)}</tbody>
         </table>
         <ul className={style.listItem}>
+        <i class="fa-solid fa-arrow-left my-2 mx-2" style={{cursor:'pointer'}}></i>
           {pageNumbers.map(number => (<li className={style.ulItem} key={number}>
-            <NavLink to="/users" onClick={() => paginate(number)}>{number}</NavLink>
+            <NavLink to="/users"  style={{textDecoration:'none',border:'solid 2px grey',color:'black',padding:'4px',paddingLeft:'7px',paddingRight:'7px',borderRadius:'5px',}}  onClick={() => paginate(number)}>{number}</NavLink>
           </li>))}
+          <i class="fa-solid fa-arrow-right my-2 mx-2" style={{cursor:'pointer'}}></i> 
         </ul>
+       
       </div>
       }
     </div>
