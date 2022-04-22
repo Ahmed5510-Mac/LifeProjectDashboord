@@ -18,3 +18,10 @@
    cursor: pointer;
    color: red;
 }
+.listItem{
+    list-style: none;
+    display: flex;
+}
+.ulItem{
+    margin: 5px;
+}

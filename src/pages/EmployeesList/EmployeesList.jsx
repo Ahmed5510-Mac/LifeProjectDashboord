@@ -9,13 +9,10 @@ import { useState } from 'react';
 const EmployeesList = () => {
   const { employees, isLoading } = useSelector(state => state.employees)
   const [currentPage, setCurrentPage] = useState(1)
-  const [contentPerPage, setcontentPerPage] = useState(4)
-  const pageNumbers=[]
+  const [contentPerPage, setcontentPerPage] = useState(5)
+  const pageNumbers = []
 
-  for (let index = 1; index < Math.ceil(contentPerPage); index++) {
-    pageNumbers.push(index)
-    
-  }
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -26,11 +23,14 @@ const EmployeesList = () => {
   const handleDelete = (_id) => {
     dispatch(deleteEmployee(_id))
   }
+  for (let index = 1; index < Math.ceil(contentPerPage); index++) {
+    pageNumbers.push(index)
 
+  }
   const indexOfLastItem = currentPage * contentPerPage
   const indexOfFirstItem = indexOfLastItem - contentPerPage
 
-  const paginate=(pageNumber)=>setCurrentPage(pageNumber)
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   const employeesList = employees && employees.map((employee) => (<tr key={employee._id}>
     <td scope="row" className="text-center">{employee.fullName}</td>
@@ -55,18 +55,16 @@ const EmployeesList = () => {
             <th className="text-center">Date Of Employment</th>
           </tr>
         </thead>
-        <tbody>{employeesList.splice(indexOfFirstItem,indexOfLastItem)}</tbody>
+        <tbody>{employeesList.slice(indexOfFirstItem, indexOfLastItem)}</tbody>
       </table>
-      <ul className={style.listItem}>
-        {pageNumbers.map(number=>(<li className={style.ulItem} key={number}>
-        <NavLink to="/employees" onClick={()=>paginate(number)}>{number}</NavLink>
-        </li>))}
-      </ul>
+        <ul className={style.listItem}>
+          {pageNumbers.map(number => (<li className={style.ulItem} key={number}>
+            <NavLink to="/employees" onClick={() => paginate(number)}>{number}</NavLink>
+          </li>))}
+        </ul>
       </div>
       }
-     
     </div>
-
   </>);
 }
 
