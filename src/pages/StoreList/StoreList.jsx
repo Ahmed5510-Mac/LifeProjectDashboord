@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import {  getstores } from "../../store/store/storeSlice";
+import style from './StoreList.module.css';
 
 const StoreList = () => {
   const { stores, isLoading } = useSelector((state) => state.stores);
@@ -22,6 +23,7 @@ const StoreList = () => {
   return (
     <>
      <Sidebar />
+     <div className={style.storeList}>
      {isLoading ? 'loading...' : <div className='container'>
         <NavLink to='/stores/add' className='btn btn-primary my-2'>
               Add Store
@@ -43,6 +45,7 @@ const StoreList = () => {
             </table>
       </div>
      }
+     </div>
     </>
   );
 };
