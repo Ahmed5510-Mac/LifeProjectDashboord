@@ -45,7 +45,9 @@ const EmployeesList = () => {
   return (<>
     <Sidebar />
     <div className={style.employeesList}>
-      {isLoading ? 'loading...' : <div className='container'><NavLink to="/employees/add" className="btn btn-primary my-2">Add employee</NavLink><table className="table table-hover table-bordered table-striped">
+      {isLoading ? 'loading...' : <div className='container'>
+      <h2 className="text-center fw-bold text-dark my-2">Employees List</h2>
+        <NavLink to="/employees/add" className="btn btn-primary my-2">Add employee</NavLink><table className="table table-hover table-bordered table-striped">
         <thead>
           <tr>
             <th className="text-center">Employee Name</th>
@@ -58,9 +60,12 @@ const EmployeesList = () => {
         <tbody>{employeesList.slice(indexOfFirstItem, indexOfLastItem)}</tbody>
       </table>
         <ul className={style.listItem}>
+          <i class="fa-solid fa-arrow-left my-2 mx-2" style={{cursor:'pointer'}}></i>
           {pageNumbers.map(number => (<li className={style.ulItem} key={number}>
-            <NavLink to="/employees" onClick={() => paginate(number)}>{number}</NavLink>
-          </li>))}
+           
+            <NavLink to="/employees" style={{textDecoration:'none',border:'solid 2px grey',color:'black',padding:'4px',paddingLeft:'7px',paddingRight:'7px',borderRadius:'5px',}} onClick={() => paginate(number)}>{number}</NavLink>
+          </li>))} 
+          <i class="fa-solid fa-arrow-right my-2 mx-2" style={{cursor:'pointer'}}></i>        
         </ul>
       </div>
       }
