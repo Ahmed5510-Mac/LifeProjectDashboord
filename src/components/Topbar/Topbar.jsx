@@ -14,13 +14,12 @@ const Topbar = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const btnlogout=document.querySelector(".logout")
+    const neuser= localStorage.getItem("user")
 
     const onLogout = () => {
         dispatch(logout());
         dispatch(reset());
         navigate("/login");
-        
-
     };
 
     return (<>
@@ -31,13 +30,11 @@ const Topbar = () => {
                 </div>
                 <div className={style.topRight}>
                     <span className='fa-solid  p-1 fa-user me-1'></span>
-                    {!user || user==null? (
-                        ""
-                    ) : (
+                    {neuser && 
                         <>  <button className="btn   rounded-circle bg-white" onClick={onLogout}>
                             <i className="fa-solid  fa-arrow-right-from-bracket  "></i>
                         </button></>
-                    )}
+                    }
                 </div>
             </div>
         </div>
