@@ -8,7 +8,7 @@ export const data = [
   },
   {
     name: "Medicine",
-        uv: 1890,
+    uv: 1890,
     pv: 4800,
     amt: 2181,
     "value":48

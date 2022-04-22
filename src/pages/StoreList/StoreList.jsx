@@ -17,7 +17,7 @@ const StoreList = () => {
     <td className="text-center">{stores.storePhone}</td>
     <td className="text-center">{stores.storeCategoriesId.map((category)=>(category.name))}</td>
     <td className="text-center">{stores.storeAddress.storeCity}</td>
-    <td><span className='fa-solid fa-pen-to-square' role="button"  onClick={() => { navigate(`/stores/${stores._id}/edit`, { state: { storeData: stores } }) }} ></span></td>
+    <td className="text-center"><span className='fa-solid fa-pen-to-square' role="button"  onClick={() => { navigate(`/stores/${stores._id}/edit`, { state: { storeData: stores } }) }} ></span></td>
   </tr>))
  
   return (
@@ -25,6 +25,7 @@ const StoreList = () => {
      <Sidebar />
      <div className={style.storeList}>
      {isLoading ? 'loading...' : <div className='container'>
+     <h2 className="text-center fw-bold text-dark my-2">Stores</h2>
         <NavLink to='/stores/add' className='btn btn-primary my-2'>
               Add Store
             </NavLink>

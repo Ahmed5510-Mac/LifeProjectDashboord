@@ -52,15 +52,17 @@ dispatch(getstores())
         <>
         <Sidebar/>
         
- <div className="row justify-content-center  align-items-center mx-auto">
+ <div className="row justify-content-center  align-items-center mx-auto mb-3">
       <form
         className="continer px-5 py-5 text-center  mx-auto sign-Up"
         onSubmit={(e)=>handleSubmit(e)} encType='multipart/form-data'
         >
+          <h2 className='mb-4 fw-bold'>Edit Store</h2>
+
            <div className="d-flex align-items-center justify-content-evenly w-100 ">
           <label htmlFor="name">
             <i
-              className="fa-solid fa-key border p-2 rounded-circle "
+              className="fa-solid fa-key border p-2 mx-2 rounded-circle "
               role="button"
             ></i>
           </label>
@@ -70,7 +72,7 @@ dispatch(getstores())
         <div className="d-flex align-items-center justify-content-evenly w-100 ">
           <label htmlFor="name">
             <i
-              className="fa-solid border p-2 rounded-circle fa-user "
+              className="fa-solid border p-2  mx-2 rounded-circle fa-user "
               role="button"
             ></i>
             
@@ -80,19 +82,21 @@ dispatch(getstores())
         </div>
         <div className="d-flex align-items-center justify-content-evenly w-100 ">
           <label htmlFor="categoryImage">
-          <i className="fa-solid fa-image border p-2 rounded-circle" role="button"></i>
+          <i className="fa-solid fa-image border  mx-2 p-2 rounded-circle" role="button"></i>
           </label>
             <input className='form-control col-md-6' value={storeRent} onChange={(e)=>setstoreRent(e.target.value)}/>
         </div>
         <div className="d-flex align-items-center justify-content-evenly w-100 ">
           <label htmlFor="categoryImage">
-          <i className="fa-solid fa-image border p-2 rounded-circle" role="button"></i>
+          <i className="fa-solid fa-image  mx-2 border p-2 rounded-circle" role="button"></i>
           </label>
           <input className='form-control col-md-6' value={storeEmployeesId} onChange={(e)=>setstoreEmployeesId(e.target.value)}/>
-
         </div>
+
         <div className="d-flex align-items-center justify-content-evenly w-100 ">
-        <span className='fa-solid border p-2 rounded-circle fa-book  me-1'></span>
+          <label>
+        <i className='fa-solid border  mx-2 p-2 rounded-circle fa-book my-2' role="button"></i>
+         </label>
           <select className='form-select' onChange={(e) => setstoreCategoriesId(e.target.value)}>
             <option selected disapled>Change Category</option>
             {Category && Category.map((Category) =>
@@ -100,16 +104,17 @@ dispatch(getstores())
             )}
           </select>
         </div>
+
         <div className="d-flex align-items-center justify-content-evenly w-100">
           <label htmlFor="categoryImage">
-          <i className="fa-solid fa-image border p-2 rounded-circle" role="button"></i>
+          <i className="fa-solid fa-image border  mx-2 p-2 rounded-circle" role="button"></i>
           </label>
           <input className='form-control col-md-6' value={storeCity} onChange={(e)=>setstoreCity(e.target.value)}/>
 
         </div>
         <div className="d-flex align-items-center justify-content-evenly w-100 ">
           <label htmlFor="categoryImage">
-          <i className="fa-solid fa-image border p-2 rounded-circle" role="button"></i>
+          <i className="fa-solid fa-image  mx-2 border p-2 rounded-circle" role="button"></i>
           </label>
           <input className='form-control col-md-6' value={storeStreet} onChange={(e)=>setstoreStreet(e.target.value)}/>
 
