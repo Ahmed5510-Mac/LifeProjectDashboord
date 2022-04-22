@@ -6,23 +6,6 @@ import { getEmployees, insertEmployee, editEmployee } from './../../store/employ
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const validationSchema = Yup.object({
-    fullName: Yup.string().required('Please Enter your Fullname'),
-    phone: Yup.string().required('Please Enter your Phone'),
-    email: Yup.string()
-        .required('Please Enter your Email')
-        .email('Invalid email format'),
-    password: Yup.string().required('Please Enter your Password'),
-    workHour: Yup.number().required('Please Enter your working hours'),
-    position: Yup.string().required('Please Enter your position'),
-    gender: Yup.string().required('Please Enter your gender'),
-    militarystatus: Yup.string().required('Please Enter your militarystatus'),
-    dateOfEmployment: Yup.date().required('Please Enter your dateOfEmployment'),
-    employeecity: Yup.string().required('Please Enter your City'),
-    employeestreet: Yup.string().required('Please Enter your Street'),
-    employeebuilding: Yup.number().required('Please Enter your Building'),
-})
-
 function EmployeesEdit() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -66,6 +49,10 @@ function EmployeesEdit() {
 
         navigate("/employees")
     }
+
+useEffect(() => {
+ 
+}, [employeeInfo])
 
     return (
         <>
