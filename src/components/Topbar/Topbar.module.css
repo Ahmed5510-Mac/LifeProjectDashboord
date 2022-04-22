@@ -16,8 +16,8 @@
 }
 .logo {
   font-size: 30px;
-  font-weight: bold;
-  color: darkblue;
+  font-weight: 500;
+  color: #3dc4fa;
   cursor: pointer;
 }
 .topRight {
@@ -56,4 +56,9 @@
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
+}
+.topLeft
+{
+  display: flex;
+  align-items: center;
 }

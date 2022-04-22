@@ -14,7 +14,7 @@ const Topbar = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const btnlogout=document.querySelector(".logout")
-    const neuser= localStorage.getItem("user")
+    const neuser = JSON.parse(localStorage.getItem('user'))
 
     const onLogout = () => {
         dispatch(logout());
@@ -26,14 +26,26 @@ const Topbar = () => {
         <div className={style.topbar}>
             <div className={style.topbarWrapper}>
                 <div className={style.topLeft}>
+                    <img src={logo} alt="logo" className='w-25' />
                     <span className={style.logo}>Life</span>
                 </div>
                 <div className={style.topRight}>
+                    {!neuser &&
                     <span className='fa-solid  p-1 fa-user me-1'></span>
+                    }
                     {neuser && 
-                        <>  <button className="btn   rounded-circle bg-white" onClick={onLogout}>
+                        <>  
+                        <div className="d-flex align-items-center">
+                            <div className="userDash d-flex align-items-baseline">
+                                <span className='fa-solid  p-1 fa-user me-1'></span>
+                                <p>Hello {neuser.customer.fullName} </p>
+                                    23
+                            </div>
+                            <button className="btn   rounded-circle bg-white" onClick={onLogout}>
                             <i className="fa-solid  fa-arrow-right-from-bracket  "></i>
-                        </button></>
+                    </button>
+                        </div>
+                    </>
                     }
                 </div>
             </div>
@@ -48,13 +60,11 @@ export default Topbar;
     const user = useSelector((state) => state.auth);
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const onLogout = () => {
         dispatch(logout());
         dispatch(reset());
         navigate("/login");
     };
-
     return (<>
         <div className={style.topbar}>
             <div className={style.topbarWrapper}>
@@ -78,5 +88,4 @@ export default Topbar;
             </div>
         </div>
     </>);
-
 */
