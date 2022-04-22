@@ -57,31 +57,32 @@ function ProductEdit() {
   return (
     <>
     <Sidebar />
-    <div className='container'>
-      <form className='row' onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
+    <div className='row justify-content-center  align-items-center mx-auto mb-3'>
+      <form className='continer px-5 py-5 text-center  mx-auto sign-Up' onSubmit={(e) => handleSubmit(e)} encType="multipart/form-data">
       <h2 className='mb-4 fw-bold'>Edit Product</h2>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-brands border p-2 rounded-circle fa-product-hunt me-1'></span><input className='form-control col-md-6' value={productName} onChange={(e) => setproductName(e.target.value)} />
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid border p-2 rounded-circle fa-building me-1'></span><input className='form-control col-md-6' value={company} onChange={(e) => setCompany(e.target.value)} />
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid border p-2 rounded-circle fa-dollar-sign me-1'></span><input className='form-control col-md-6' value={price} onChange={(e) => setPrice(e.target.value)} />
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid border p-2 rounded-circle fa-box me-1'></span><input className='form-control col-md-6' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid border p-2 rounded-circle fa-location-dot me-1'></span><input className='form-control col-md-6' value={countryOfManufacture} onChange={(e) => setCountryOfManufacture(e.target.value)} />
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid border p-2 rounded-circle fa-book  me-1'></span><input className='form-control col-md-6' value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid border p-2 rounded-circle fa-percent me-1'></span><input className='form-control col-md-6' disabled value={discount.discountAmount} onChange={(e) => setDiscount(e.target.value)} /><br />
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid border p-2 rounded-circle fa-percent me-1'></span>
           <select className='form-select' onChange={(e) => setDiscount(e.target.value)}>
             <option selected disapled>Change discount Amount</option>
@@ -90,10 +91,10 @@ function ProductEdit() {
             )}
           </select>
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid border p-2 rounded-circle fa-boxes-stacked me-1'></span><input className='form-control col-md-6' disabled value={category.name} onChange={(e) => setCategory(e.target.value)} /><br />
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid border p-2 rounded-circle fa-book  me-1'></span>
           <select className='form-select' onChange={(e) => setCategory(e.target.value)}>
             <option selected disapled>Change Category</option>
@@ -102,13 +103,13 @@ function ProductEdit() {
             )}
           </select>
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid border p-2 rounded-circle fa-calendar-days me-1'></span><input className='form-control col-md-6' value={expirationDate} onChange={(e) => setExpirationDate(e.target.value)} />
         </div>
-        <div className='col-md-4 d-flex me-4 mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <span className='fa-solid fa-image border p-2 rounded-circle  me-1'></span><img src={image} alt='' style={{ width: "50px", height: "50px" }} /><input type="file" className='ms-1' onChange={(e) => setFile(e.target.files[0])} />
         </div>
-        <div className='col-md-4 d-flex me-4  mb-1'>
+        <div className='d-flex align-items-center justify-content-evenly w-100'>
           <button className='btn btn-primary' type='submit'>Submit</button>
         </div>
       </form>

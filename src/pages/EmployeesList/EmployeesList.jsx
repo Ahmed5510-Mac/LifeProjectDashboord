@@ -26,7 +26,7 @@ const EmployeesList = () => {
     <td className="text-center">{employee.phone}</td>
     <td className="text-center">{employee.position}</td>
     <td className="text-center">{employee.dateOfEmployment}</td>
-    <td><span className='fa-solid fa-trash' role="button" onClick={() => handleDelete(employee._id)}></span></td>
+    {/* <td><span className='fa-solid fa-trash' role="button" onClick={() => handleDelete(employee._id)}></span></td> */}
     <td className="text-center"><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/employees/${employee._id}`, { state: { employeeData: employee } }) }} ></span></td>
   </tr>))
 
