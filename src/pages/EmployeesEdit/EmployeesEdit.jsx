@@ -1,12 +1,10 @@
-import { React } from 'react'
-import { useDispatch } from 'react-redux'
+import {React,useState,useEffect} from 'react'
+import {useLocation,useNavigate } from 'react-router-dom'
+import {useDispatch  } from 'react-redux';
+import Sidebar from './../../components/Sidebar/Sidebar';
+import { getEmployees, insertEmployee,editEmployee } from './../../store/employee/employeeSlice';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Sidebar from './../../components/Sidebar/Sidebar';
-import { useNavigate } from 'react-router-dom';
-import { getEmployees, insertEmployee } from './../../store/employee/employeeSlice';
-
-
 
 const validationSchema = Yup.object({
     fullName: Yup.string().required('Please Enter your Fullname'),
@@ -25,24 +23,133 @@ const validationSchema = Yup.object({
     employeebuilding: Yup.number().required('Please Enter your Building'),
 })
 
-const EmployeesAdd = () => {
+function EmployeesEdit() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const location = useLocation()
+    const employeeInfo = location.state.employeeData
+    const id = employeeInfo._id
+
+      
+const [fullName,setName] = useState(employeeInfo.fullName)
+const [phone,setPhone] = useState(employeeInfo.phone)
+const [email,setEmail] = useState(employeeInfo.email)
+const [position,setPosition] = useState(employeeInfo.position)
+const [workHour,setWorkHour] = useState(employeeInfo.workHour)
+const [gender,setGender] = useState(employeeInfo.gender)
+const [employeecity,setEmployeecity] = useState(employeeInfo.address.city)
+const [employeestreet,setEmployeestreet] = useState(employeeInfo.address.employeestreet)
+const [employeebuilding,setEmployeebuilding] = useState(employeeInfo.address.employeebuilding)
+//console.log(fullName,image,customerPhone,role,country,city,streetName,buildingNumber,floorNumber)
+
+
+const handleSubmit = (e)=>{
+e.preventDefault()
+ const formData = new FormData();
+ formData.append('fullName',fullName)
+ formData.append('phone',phone)
+ formData.append('email',email)
+ formData.append('position', position)
+ formData.append('workHour', workHour)
+ formData.append('gender', gender)
+ formData.append('address', JSON.stringify(
+  {
+    city: employeecity,
+    street: employeestreet,
+    building: employeebuilding,
+  }
+))
+
+
+dispatch(editEmployee({formData:formData,id:id}))
+dispatch(getEmployees())
+
+ navigate("/employees")
+}
+
+  return (
+    <>
+    <Sidebar/>
+ 
+    <div className='container'>
+      <form className='row' onSubmit={(e)=>handleSubmit(e)} encType="multipart/form-data">
+      <h2 className='mb-4 fw-bold'>Edit Employee</h2>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid border p-2 rounded-circle fa-user me-1'></span><input className='form-control col-md-6' value={fullName} onChange={(e)=>setName(e.target.value)}/>
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid fa-phone border p-2 rounded-circle  me-1'></span><input className='form-control col-md-6' disabled  value={email}  onChange={(e)=>setEmail(e.target.value)}/>
+        </div>
+      
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid fa-unlock-keyhole border p-2 rounded-circle me-1'></span><input className='form-control col-md-6' value={phone} onChange={(e)=>setPhone(e.target.value)}/>
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid fa-unlock-keyhole border p-2 rounded-circle me-1'></span><input className='form-control col-md-6'  value={position} onChange={(e)=>setPosition(e.target.value)} />
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid fa-user border p-2 rounded-circle me-1'></span>
+        <select className='form-select col-md-6' onChange={(e)=>setGender(e.target.value)}>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        </select>
+        </div>
+        <div className='col-md-4 d-flex me-4 mb-1'>
+        <span className='fa-solid fa-unlock-keyhole border p-2 rounded-circle me-1'></span><input className='form-control col-md-6' value={workHour} onChange={(e)=>setWorkHour(e.target.value)}/>
+        </div>
+      
+        <div className='col-md-4 d-flex me-4 mb-1'>
+          <button className='btn btn-primary' type='submit'>Submit</button>
+        </div>
+      </form>
+    </div>
+    </>
+  )
+  
+}
+
+export default EmployeesEdit
+
+/*
+
+const validationSchema = Yup.object({
+    fullName: Yup.string().required('Please Enter your Fullname'),
+    phone: Yup.string().required('Please Enter your Phone'),
+    email: Yup.string()
+        .required('Please Enter your Email')
+        .email('Invalid email format'),
+    password: Yup.string().required('Please Enter your Password'),
+    workHour: Yup.number().required('Please Enter your working hours'),
+    position: Yup.string().required('Please Enter your position'),
+    gender: Yup.string().required('Please Enter your gender'),
+    militarystatus: Yup.string().required('Please Enter your militarystatus'),
+    dateOfEmployment: Yup.date().required('Please Enter your dateOfEmployment'),
+    employeecity: Yup.string().required('Please Enter your City'),
+    employeestreet: Yup.string().required('Please Enter your Street'),
+    employeebuilding: Yup.number().required('Please Enter your Building'),
+})
+
+function EmployeesEdit() {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const location = useLocation()
+    const employeeInfo = location.state.employeeData
+    const id = employeeInfo._id
 
     const formik = useFormik({
         initialValues: {
-            fullName: '',
-            phone: '',
-            email: '',
-            password: '',
-            workHour: '',
-            militarystatus: '',
-            position: '',
-            gender: '',
-            dateOfEmployment: '',
-            employeecity: '',
-            employeestreet: '',
-            employeebuilding: '',
+            fullName: employeeInfo.fullName,
+            phone: employeeInfo.phone,
+            email:employeeInfo.email,
+            password: employeeInfo.password,
+            workHour:employeeInfo.workHour,
+            militarystatus:employeeInfo.militarystatus,
+            position: employeeInfo.position,
+            gender: employeeInfo.gender,
+            dateOfEmployment:employeeInfo.dateOfEmployment,
+            employeecity:employeeInfo.employeecity,
+            employeestreet:employeeInfo.employeestreet,
+            employeebuilding:employeeInfo.employeebuilding,
         },
         onSubmit: (values) => {
             console.log(values);
@@ -67,8 +174,8 @@ const EmployeesAdd = () => {
             );
 
 
-            dispatch(insertEmployee(formData));
-          //  dispatch(getEmployees());
+            dispatch(editEmployee({formData:formData,id:id}));
+            dispatch(getEmployees());
             navigate('/employees');
 
         },
@@ -83,7 +190,7 @@ const EmployeesAdd = () => {
                     onSubmit={formik.handleSubmit}
                     className='continer px-5 py-5 text-center  mx-auto sign-Up'
                 >
-                    <h2 className='mb-4 fw-bold'>Add Employee</h2>
+                    <h2 className='mb-4 fw-bold'>Edit Employee</h2>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor='fullName'>
                             <i
@@ -318,7 +425,9 @@ const EmployeesAdd = () => {
                 </form>
             </div>
         </>);
-
+  
 }
 
-export default EmployeesAdd;
+export default EmployeesEdit
+
+*/

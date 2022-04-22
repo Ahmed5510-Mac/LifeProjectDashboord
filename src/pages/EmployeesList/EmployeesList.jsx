@@ -8,32 +8,32 @@ import { getEmployees, deleteEmployee } from './../../store/employee/employeeSli
 const EmployeesList = () => {
   const { employees, isLoading } = useSelector(state => state.employees)
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-    useEffect(() => {
-        dispatch(getEmployees())
-      }, [dispatch])
-    
-      const handleDelete = (_id) => {
-        dispatch(deleteEmployee(_id))
-      }
-    
+  useEffect(() => {
+    dispatch(getEmployees())
+  }, [dispatch])
 
-      const employeesList = employees && employees.map((employee) => (<tr key={employee._id}>
-        <td scope="row" className="text-center">{employee.fullName}</td>
-        <td className="text-center">{employee.email}</td>
-        <td className="text-center">{employee.phone}</td>
-        <td className="text-center">{employee.position}</td>
-        <td className="text-center">{employee.dateOfEmployment}</td>
-       {/*<td><span className='fa-solid fa-trash' role="button" onClick={() => handleDelete(customer._id)}></span></td> */} 
-        <td className="text-center"><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/users/${employee._id}`, { state: { employeeData: employee } }) }} ></span></td>
-      </tr>))
+  const handleDelete = (_id) => {
+    dispatch(deleteEmployee(_id))
+  }
 
-    return (<>
-        <Sidebar />
-        <div className={style.employeesList}>
-        {isLoading ? 'loading...' : <div className='container'><NavLink to="/employees/add" className="btn btn-primary my-2">Add employee</NavLink><table className="table table-hover table-bordered table-striped">
+
+  const employeesList = employees && employees.map((employee) => (<tr key={employee._id}>
+    <td scope="row" className="text-center">{employee.fullName}</td>
+    <td className="text-center">{employee.email}</td>
+    <td className="text-center">{employee.phone}</td>
+    <td className="text-center">{employee.position}</td>
+    <td className="text-center">{employee.dateOfEmployment}</td>
+    <td><span className='fa-solid fa-trash' role="button" onClick={() => handleDelete(employee._id)}></span></td>
+    <td className="text-center"><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/employees/${employee._id}`, { state: { employeeData: employee } }) }} ></span></td>
+  </tr>))
+
+  return (<>
+    <Sidebar />
+    <div className={style.employeesList}>
+      {isLoading ? 'loading...' : <div className='container'><NavLink to="/employees/add" className="btn btn-primary my-2">Add employee</NavLink><table className="table table-hover table-bordered table-striped">
         <thead>
           <tr>
             <th className="text-center">Employee Name</th>
@@ -47,9 +47,9 @@ const EmployeesList = () => {
       </table>
       </div>
       }
-        </div>
+    </div>
 
-    </>);
+  </>);
 }
 
 export default EmployeesList;

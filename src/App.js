@@ -21,6 +21,7 @@ import OrdersList from './pages/OrdersList/OrdersList.jsx';
 import Reports from './pages/Reports/Reports';
 import EmployeesList from './pages/EmployeesList/EmployeesList';
 import EmployeesAdd from './pages/EmployeesAdd/EmployeesAdd';
+import EmployeesEdit from './pages/EmployeesEdit/EmployeesEdit';
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
             <Route path='/reports' element={<Reports />} />
             <Route path='/employees' element={<EmployeesList />} />
             <Route path='/employees/add' element={<EmployeesAdd />} />
+            <Route path='/employees/:id' element={<EmployeesEdit />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </div>
