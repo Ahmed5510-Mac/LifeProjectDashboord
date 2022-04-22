@@ -19,9 +19,12 @@ export const insertProduct = createAsyncThunk(
   async (productData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await axios.post('http://localhost:8080/products', productData);
+      const res = await axios.post(
+        'http://localhost:8080/products',
+        productData
+      );
       console.log(res);
-      return res;
+      return res.data.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -77,7 +80,7 @@ export const editProduct = createAsyncThunk(
 );
 
 const initialState = {
-  products: null,
+  products: [],
   isLoading: false,
   error: null,
   productInfo: null,
@@ -87,9 +90,7 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
 
-  reducers:{
-
-  },
+  reducers: {},
   extraReducers: {
     //get-products
     [getProducts.pending]: (state, action) => {
@@ -115,7 +116,7 @@ export const productSlice = createSlice({
     [insertProduct.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.products.push(action.payload);
+      state.products = action.payload;
     },
     [insertProduct.rejected]: (state, action) => {
       state.isLoading = false;

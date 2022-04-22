@@ -12,7 +12,7 @@ const ProductList = () => {
   const dispatch = useDispatch()
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [contentPerPage, setcontentPerPage] = useState(5)
+  const [contentPerPage, setcontentPerPage] = useState(6)
   const pageNumbers = []
 
 
@@ -27,50 +27,50 @@ const ProductList = () => {
     pageNumbers.push(index)
   }
 
-    const indexOfLastItem = currentPage * contentPerPage
-    const indexOfFirstItem = indexOfLastItem - contentPerPage
+  const indexOfLastItem = currentPage * contentPerPage
+  const indexOfFirstItem = indexOfLastItem - contentPerPage
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
-    const productsList = products && products.map((product) => (<tr key={product._id}>
-      <td className="text-center" scope="row">{product.productName}</td>
-      <td className="text-center">{product.company}</td>
-      <td className="text-center">{product.price}</td>
-      <td className="text-center">{product.quantity}</td>
-      <td className="text-center">{product.countryOfManufacture}</td>
-      <td className="text-center">{product.description}</td>
-      <td className="text-center">{product.expirationDate.split('T')[0]}</td>
-      {/*<td className={style.productListDelete}><span className='fa-solid fa-trash' onClick={() => handleDelete(product._id)}></span></td> */}
-      <td className="text-center"><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/products/${product._id}`, { state: { productData: product } }) }} ></span></td>
-    </tr>))
+  const productsList = products && products.map((product) => (<tr key={product._id}>
+    <td className="text-center" scope="row">{product.productName}</td>
+    <td className="text-center">{product.company}</td>
+    <td className="text-center">{product.price}</td>
+    <td className="text-center">{product.quantity}</td>
+    <td className="text-center">{product.countryOfManufacture}</td>
+    <td className="text-center">{product.description}</td>
+    <td className="text-center">{product.expirationDate.split('T')[0]}</td>
+    {/*<td className={style.productListDelete}><span className='fa-solid fa-trash' onClick={() => handleDelete(product._id)}></span></td> */}
+    <td className="text-center"><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/products/${product._id}`, { state: { productData: product } }) }} ></span></td>
+  </tr>))
 
- 
+
 
   return (<>
     <Sidebar />
     <div className={style.productList}>
-      {isLoading ? 'loading...' : <div className='container'>
-      <h2 className="text-center fw-bold text-dark my-2">Products List</h2>
+      {isLoading && productsList.length < 0 ? 'loading...' : <div className='container'>
+        <h2 className="text-center fw-bold text-dark my-2">Products List</h2>
         <NavLink to="/products/add" className="btn btn-primary my-2">Add product</NavLink><table className="table table-hover table-bordered table-striped">
-        <thead>
-          <tr>
-            <th className="text-center">Product Name</th>
-            <th className="text-center">Company</th>
-            <th className="text-center">Price</th>
-            <th className="text-center">Quantity</th>
-            <th className="text-center">CountryOfManufacture</th>
-            <th className="text-center">Description</th>
-            <th className="text-center">ExpirationDate</th>
-          </tr>
-        </thead>
-        <tbody>{productsList.slice(indexOfFirstItem, indexOfLastItem)}</tbody>
-      </table>
+          <thead>
+            <tr>
+              <th className="text-center">Product Name</th>
+              <th className="text-center">Company</th>
+              <th className="text-center">Price</th>
+              <th className="text-center">Quantity</th>
+              <th className="text-center">CountryOfManufacture</th>
+              <th className="text-center">Description</th>
+              <th className="text-center">ExpirationDate</th>
+            </tr>
+          </thead>
+          <tbody>{productsList.slice(indexOfFirstItem, indexOfLastItem)}</tbody>
+        </table>
         <ul className={style.listItem}>
-        <i class="fa-solid fa-arrow-left my-2 mx-2" style={{cursor:'pointer'}}></i>
+          <i class="fa-solid fa-arrow-left my-2 mx-2" style={{ cursor: 'pointer' }}></i>
           {pageNumbers.map(number => (<li className={style.ulItem} key={number}>
-            <NavLink to="/products"  style={{textDecoration:'none',border:'solid 2px grey',color:'black',padding:'4px',paddingLeft:'7px',paddingRight:'7px',borderRadius:'5px',}}  onClick={() => paginate(number)}>{number}</NavLink>
+            <NavLink to="/products" style={{ textDecoration: 'none', border: 'solid 2px grey', color: 'black', padding: '4px', paddingLeft: '7px', paddingRight: '7px', borderRadius: '5px', }} onClick={() => paginate(number)}>{number}</NavLink>
           </li>))}
-          <i class="fa-solid fa-arrow-right my-2 mx-2" style={{cursor:'pointer'}}></i> 
+          <i class="fa-solid fa-arrow-right my-2 mx-2" style={{ cursor: 'pointer' }}></i>
         </ul>
       </div>
       }

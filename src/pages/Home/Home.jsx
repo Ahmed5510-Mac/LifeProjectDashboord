@@ -13,10 +13,6 @@ const Home = () => {
         <div className={style.home}>
             <FeaturesInfo />
             <Chart data={productsData} title='Sales Analytics' grid dataKey="Sales" />
-            <div className={style.homeWidgets}>
-                <WidgetSm />
-                <WidgetLg />
-            </div>
         </div>
     </>);
 }

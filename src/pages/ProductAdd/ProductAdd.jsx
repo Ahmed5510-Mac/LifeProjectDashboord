@@ -1,12 +1,13 @@
 import { React, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { insertProduct } from '../../store/product/productSlice';
+import { insertProduct, getProducts } from '../../store/product/productSlice';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Sidebar from './../../components/Sidebar/Sidebar';
 import { useNavigate } from 'react-router-dom';
 import { getDiscounts } from '../../store/discount/discountSlice';
 import { getCategory } from '../../store/category/categorySlice';
+
 
 const validationSchema = Yup.object({
     productName: Yup.string().required('Please Enter your productName'),
@@ -63,7 +64,9 @@ const ProductAdd = () => {
 
 
             dispatch(insertProduct(formData))
+
             navigate("/products")
+            dispatch(getProducts())
         },
         validationSchema,
     })
