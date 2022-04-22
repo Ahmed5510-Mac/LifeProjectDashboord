@@ -73,7 +73,7 @@ const ProductAdd = () => {
             <Sidebar />
             <div className="row justify-content-center  align-items-center mx-auto">
                 <form className='continer px-5 py-5 text-center  mx-auto sign-Up' onSubmit={formik.handleSubmit} encType="multipart/form-data">
-                <h2 className='mb-4 fw-bold'>Add Product</h2>
+                    <h2 className='mb-4 fw-bold'>Add Product</h2>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="productName"><i className="fa-brands border p-2 rounded-circle fa-product-hunt" role="button"></i></label>
                         <input className='form-control w-75 ' placeholder='Enter productName' type="text" name='productName'
@@ -112,6 +112,7 @@ const ProductAdd = () => {
                             onChange={(e) => setFile(e.target.files[0])} />
 
                     </div>
+
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="discount"><i className="fa-solid fa-boxes-stacked border rounded-circle p-2  " role="button"></i></label>
                         <select className='form-select w-75 mb-1' name="discount"
@@ -124,6 +125,7 @@ const ProductAdd = () => {
                             )}
                         </select>
                     </div>
+
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="expirationDate"><i className="fa-solid fa-calendar-days border p-2 rounded-circle  " role="button"></i></label>
                         <input
@@ -170,19 +172,7 @@ const ProductAdd = () => {
                         />
                     </div>
                     {formik.touched.description && formik.errors.description ? <div >{formik.errors.description}</div> : null}
-                    <div className='d-flex align-items-center justify-content-evenly w-100'>
-                        <label htmlFor="role"><i className="fa-solid border p-2 rounded-circle fa-user  " role="button"></i></label>
-                        <select className='form-select w-75 mb-1' name='role'
-                            value={formik.values.role}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur} >
-                            <option selected >Select Your Role</option>
-                            <option value="Doctor">Doctor</option>
-                            <option value="Merchant">Merchant</option>
 
-                        </select>
-
-                    </div>
                     <div className='d-flex align-items-center justify-content-evenly w-100'>
                         <label htmlFor="category"><i className="fa-solid fa-boxes-stacked border rounded-circle p-2  " role="button"></i></label>
                         <select className='form-select w-75 mb-1' name="category"
