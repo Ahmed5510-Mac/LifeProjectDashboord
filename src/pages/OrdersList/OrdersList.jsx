@@ -65,23 +65,29 @@ function OrdersList() {
   return (
       <>
     <Sidebar />
+    
     <div >
-    {isLoading ? 'Loading' : inProgressOrders && inProgressOrders.length>0 ?<div className='container-fluid  mx-auto my-1'><NavLink to="/discounts/add" className="btn btn-primary my-2">Add Order</NavLink>
-    <h2 className='text-center text-dark'>Orders List</h2>
-    <table className="table table-hover table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>Customer Name</th>
-          <th>receipt Total Price</th>
-          <th>receipt Total Products</th>
-          <th>Order Status</th>
-          <th>Order Request Date</th>
-          <th>Order Deliver Date</th>
-        </tr>
-      </thead>
-      <tbody>{ordersList}</tbody>
-    </table>
-    </div>
+        {isLoading ? 'Loading' : inProgressOrders && inProgressOrders.length > 0 ?
+          <div className="mx-auto-con">
+          <div className='container w-100  mx-auto '>
+            <NavLink to="/discounts/add" className="btn btn-primary my-2">Add Order</NavLink>
+        <h2 className='text-center text-dark'>Orders List</h2>
+        <table className="table table-hover table-bordered table-striped w-100">
+          <thead>
+            <tr>
+              <th>Customer Name</th>
+              <th>receipt Total Price</th>
+              <th>receipt Total Products</th>
+              <th>Order Status</th>
+              <th>Order Request Date</th>
+              <th>Order Deliver Date</th>
+            </tr>
+          </thead>
+          <tbody>{ordersList}</tbody>
+        </table>
+        </div>
+
+          </div>
     : <div className="text-center w-75 mx-auto" style={{height:"30vh"}}><h3 className='text-primary'>There is noPending Orders</h3></div>
     }
     </div>

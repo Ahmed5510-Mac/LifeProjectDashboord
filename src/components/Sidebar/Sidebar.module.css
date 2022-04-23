@@ -4,6 +4,7 @@
     position: sticky; 
     top: 50px;
     width: 20vw; 
+    margin-right:10px ;
 }
 .sidebarWrapper{
     padding: 20px;
@@ -35,11 +36,15 @@
     -o-border-radius: 10px;
     text-decoration: none;
     color: white;
+     position: relative;
+     margin-top: 10px!important;
 }
-.sidebarListItem.active,.sidebarListItem:hover{
-    background-color: rgb(240, 240, 255);
+ 
+.sidebarListItem:hover{
+    background-color: #ffffff;
     color: black;
 }
+
 .sidebarIcon{
     margin-right: 5px;
     font-size: 20px !important;

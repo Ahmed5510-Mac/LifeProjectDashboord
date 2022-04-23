@@ -8,7 +8,6 @@ import { logout, reset } from '../../store/auth/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, NavLink } from 'react-router-dom';
 import logo from "../../assets/Logo1.png";
-
 const Topbar = () => {
     const { user, isSuccess } = useSelector((state) => state.auth);
     const navigate = useNavigate()

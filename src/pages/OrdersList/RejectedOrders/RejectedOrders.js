@@ -36,7 +36,7 @@ function RejectedOrders() {
       <>
       <Sidebar/>
       <div >
-    { rejectedOrders && rejectedOrders.length>0 ?<div className='container-fluid'><NavLink to="/discounts/add" className="btn btn-primary my-2">Add Order</NavLink>
+    { rejectedOrders && rejectedOrders.length>0 ?<div className='mx-auto-con'><NavLink to="/discounts/add" className="btn btn-primary my-2">Add Order</NavLink>
     <h2 className='text-center text-dark'>Rejeclted Orders</h2>
     <table className="table table-hover table-bordered table-striped mx-auto my-1">
       <thead>
