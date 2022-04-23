@@ -1,0 +1,23 @@
+.product {
+  flex: 4;
+  padding: 20px;
+}
+.productTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.productTitle {
+}
+.productAddButton {
+  background-color: teal;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}

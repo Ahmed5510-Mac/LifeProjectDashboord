@@ -13,6 +13,8 @@ function BlackListUsers() {
     },[dispatch])
 
     const removeFromBlackList=(customer)=>{
+      if(window.confirm("Are You Sure you want to remove this customer from Blacklist"))
+    {
         const formData = new FormData();
         formData.append('fullName',customer.fullName)
         formData.append('image',customer.image)
@@ -30,10 +32,11 @@ function BlackListUsers() {
        formData.append('blackList', false)
        
        dispatch(editCustomer({formData:formData,id:customer._id}))
-       dispatch(getUsers())
-       
         navigate("/users")
+        dispatch(getUsers())
+
     }
+  }
     const blackUsers = blackListUsers && blackListUsers.map((customer)=>(<tr key={customer._id}>
         <td scope="row" className="text-center">{customer.fullName}</td>
         <td className="text-center">{customer.customerEmail}</td>
@@ -56,7 +59,7 @@ function BlackListUsers() {
         </thead>
         <tbody>{blackUsers}</tbody>
       </table>
-      </div>:" There is no BlackList users"
+      </div>:<div className="text-center w-75 mx-auto" style={{height:"30vh"}}><h3 className='text-primary'>There is no Customers in Blacklist</h3></div>
       
     }
     </>

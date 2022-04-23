@@ -46,10 +46,6 @@ const Sidebar = () => {
                             <NavLink to="/rejectedOrders" className={style.sidebarListItem}><span className='fa-solid fa-cart-shopping me-1'></span>
                             Rejected orders
                             </NavLink>
-                        <NavLink to="/orders" className={style.sidebarListItem}>
-                            <span className='fa-solid fa-cart-shopping me-1'></span>
-                            Orders
-                        </NavLink>
                         <NavLink to="/category" className={style.sidebarListItem}>
                             <span className='fa-brands fa-deezer p-1  me-1'></span>
                             Categories

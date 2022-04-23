@@ -39,7 +39,7 @@ const ProductList = () => {
     <td className="text-center">{product.quantity}</td>
     <td className="text-center">{product.countryOfManufacture}</td>
     <td className="text-center">{product.description}</td>
-    <td className="text-center">{product.expirationDate.split('T')[0]}</td>
+    {/* <td className="text-center">{product.expirationDate.split('T')[0]}</td> */}
     {/*<td className={style.productListDelete}><span className='fa-solid fa-trash' onClick={() => handleDelete(product._id)}></span></td> */}
     <td className="text-center"><span className='fa-solid fa-pen-to-square' role="button" onClick={() => { navigate(`/products/${product._id}`, { state: { productData: product } }) }} ></span></td>
   </tr>))
@@ -60,7 +60,7 @@ const ProductList = () => {
               <th className="text-center">Quantity</th>
               <th className="text-center">CountryOfManufacture</th>
               <th className="text-center">Description</th>
-              <th className="text-center">ExpirationDate</th>
+              {/* <th className="text-center">ExpirationDate</th> */}
             </tr>
           </thead>
           <tbody>{productsList.slice(indexOfFirstItem, indexOfLastItem)}</tbody>

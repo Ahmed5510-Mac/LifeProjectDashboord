@@ -66,7 +66,7 @@ function OrdersList() {
       <>
     <Sidebar />
     <div >
-    {isLoading ? 'Loading' : inProgressOrders && inProgressOrders.length>0 ?<div className='container'><NavLink to="/discounts/add" className="btn btn-primary my-2">Add Order</NavLink>
+    {isLoading ? 'Loading' : inProgressOrders && inProgressOrders.length>0 ?<div className='container-fluid  mx-auto my-1'><NavLink to="/discounts/add" className="btn btn-primary my-2">Add Order</NavLink>
     <h2 className='text-center text-dark'>Orders List</h2>
     <table className="table table-hover table-bordered table-striped">
       <thead>
@@ -82,7 +82,7 @@ function OrdersList() {
       <tbody>{ordersList}</tbody>
     </table>
     </div>
-    : "There is no orders Pending"
+    : <div className="text-center w-75 mx-auto" style={{height:"30vh"}}><h3 className='text-primary'>There is noPending Orders</h3></div>
     }
     </div>
     </>

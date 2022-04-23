@@ -23,7 +23,7 @@ function DiscountList() {
     <td className="text-center" scope="row">{discount.discountAmount}</td>
     <td className="text-center">{`${(discount.date.from).split('T')[0]}`}</td>
     <td className="text-center">{`${(discount.date.to).split('T')[0]}`}</td>
-    <td className="text-center" ><span className='fa-solid fa-trash' onClick={() => handleDelete(discount._id)}></span></td>
+    {/* <td className="text-center" ><span className='fa-solid fa-trash' onClick={() => handleDelete(discount._id)}></span></td> */}
     <td className="text-center"><span className='fa-solid fa-pen-to-square' role="button"  onClick={() => { navigate(`/discounts/${discount._id}`, { state: { discountData: discount } }) }} ></span></td>
   </tr>))
 
@@ -32,7 +32,9 @@ function DiscountList() {
   <>
       <Sidebar />
   <div className={style.productList}>
-    {isLoading ? 'loading...' : <div className='container'><NavLink to="/discounts/add" className="btn btn-primary my-2">Add Discount</NavLink><table className="table table-hover table-bordered table-striped">
+    {isLoading ? 'loading...' : <div className='container'><NavLink to="/discounts/add" className="btn btn-primary my-2">Add Discount</NavLink>
+    <h2>Discounts List</h2>
+    <table className="table table-hover table-bordered table-striped">
       <thead>
         <tr>
           <th className="text-center">Discount Amount</th>

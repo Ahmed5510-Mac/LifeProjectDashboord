@@ -25,7 +25,8 @@ const UserList = () => {
   }, [dispatch])
 
   const addToBlackList = (customer) => {
-
+    if(window.confirm("Are You Sure you want to add this customer to Blacklist"))
+    {
     const formData = new FormData();
     formData.append('fullName', customer.fullName)
     formData.append('image', customer.image)
@@ -45,12 +46,12 @@ const UserList = () => {
     dispatch(editCustomer({ formData: formData, id: customer._id }))
     dispatch(getUsers())
     navigate("/blackListCustomers")
-
+    }
 
   }
   const removeFromBlackList = (customer) => {
-    // confirm("Are You sure to remove from Blacklist")
-    const formData = new FormData();
+    if(window.confirm("Are You Sure you want to remove this customer from Blacklist"))
+    {    const formData = new FormData();
     formData.append('fullName', customer.fullName)
     formData.append('image', customer.image)
     formData.append('customerPhone', customer.customerPhone)
@@ -70,6 +71,8 @@ const UserList = () => {
     navigate("/users")
     dispatch(getCustomers())
   }
+
+}
 
   for (let index = 1; index < Math.ceil(contentPerPage); index++) {
     pageNumbers.push(index)

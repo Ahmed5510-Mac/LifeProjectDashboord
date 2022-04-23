@@ -41,6 +41,7 @@ const CategoryList = () => {
             <NavLink to='/Category/add' className='btn btn-primary my-2'>
               Add Category
             </NavLink>
+            <h2 className='text-center my-2'>Categories</h2>
             <table className='table table-hover table-bordered table-striped'>
               <thead>
                 <tr>
